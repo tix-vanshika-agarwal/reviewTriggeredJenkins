@@ -1,0 +1,22 @@
+{
+  "passengerCount": {
+    "adult": 0,
+    "infant": 0
+  },
+  "productType": "TRAIN",
+  "selectedJourneys": {
+    "depart": {
+      "schedules": [
+        {
+          "id": "?",
+          "departDate": "?",
+          "destinationCode": "?",
+          "originCode": "?",
+          "subClass": "?",
+          "trainNumber": "?",
+          "wagonClass": "?"
+        }
+      ]
+    }
+  }
+}

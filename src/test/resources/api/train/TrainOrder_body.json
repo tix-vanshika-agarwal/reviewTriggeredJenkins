@@ -1,0 +1,23 @@
+{
+  "cartId": "?",
+  "contact": {
+    "areaCode": "+62",
+    "emailAddress": "?",
+    "fullName": "?",
+    "phone": "?",
+    "profileId": "",
+    "title": "Mr"
+  },
+  "passengers": [
+    {
+      "fullName": "?",
+      "identityNumber": "?",
+      "identityType": "identityNumber",
+      "passportNumber": "",
+      "paxType": "ADULT",
+      "profileId": "",
+      "title": "Mr"
+    }
+  ],
+  "secret": "?"
+}

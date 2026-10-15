@@ -1,0 +1,22 @@
+{
+  "cartId": "?",
+  "cartSecret": "?",
+  "customer": {
+    "profileId": "?",
+    "detail": {
+      "areaCode": "+62",
+      "emailAddress": "?",
+      "fullName": "?",
+      "phone": "?",
+      "title": "?"
+    }
+  },
+  "bookingDetail": [
+    {
+      "senderName": "Automation",
+      "schedule": "SEND_NOW",
+      "scheduleDateTime": "?",
+      "scheduleTimeZone": "Asia/Jakarta"
+    }
+  ]
+}

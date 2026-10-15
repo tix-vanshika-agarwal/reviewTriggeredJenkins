@@ -1,0 +1,14 @@
+{
+    "amountFromVendor": 0,
+    "isForceToBankTransfer": true,
+    "items": [],
+    "orderDetailId": 0,
+    "orderId": 0,
+    "reasonId": "?",
+    "receiver": {
+        "bankAccountName": "?",
+        "bankAccountNumber": "?",
+        "bankCodeTiketIdentifier": "?"
+    },
+    "remark": "?"
+}

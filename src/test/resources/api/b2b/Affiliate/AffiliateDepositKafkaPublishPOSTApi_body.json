@@ -1,0 +1,41 @@
+{
+  "resellerId": "48",
+  "resellerName": "Pia Test PreProd 4",
+  "resellerType": "B2B_AFFILIATE",
+  "resellerCustomerEmail": "-",
+  "profitType": "NET",
+  "orderId": "?",
+  "resellerOrderId": "pia-1753861131",
+  "paymentDate": "2025-07-30T07:40:31.28Z",
+  "resellerPreferredCurrency": "IDR",
+  "paymentStatusFromDisbursement": "",
+  "settlementDate": "2025-07-30T14:40:31.292133564+07:00",
+  "details": [
+    {
+      "orderDetailId": "?",
+      "carrierType": "-",
+      "supplier": "tiketcomGarudaBumblebee",
+      "markUpPercentage": 0,
+      "markUpValue": 0,
+      "baseFare": "?",
+      "markUpValueFromMarkUpPercentage": 0,
+      "totalMarkUpValue": 0,
+      "resellerCommissionPercentage": 0,
+      "commissionValue": 1056,
+      "tiketCommissionValue": "?",
+      "publishedFareToReseller": "?",
+      "resellerSubsidyCampaignPercentage": 0,
+      "resellerSubsidyCampaignValue": "?",
+      "customerFinalPriceInVendorPreferredCurrency": "?",
+      "settlementAmountInResellerPreferredCurrency": 1616982,
+      "baggageMarkupFare": 0,
+      "mealsMarkupFare": 0,
+      "seatsMarkupFare": 0,
+      "baggageFare": 0,
+      "mealsFare": 0,
+      "seatsFare": 0,
+      "convenienceFee": 0,
+      "airlineCommission": "?"
+    }
+  ]
+}

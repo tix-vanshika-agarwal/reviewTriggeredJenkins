@@ -1,0 +1,14 @@
+{
+  "adult": "?",
+  "childAges": [],
+  "hotelId": "?",
+  "night": "?",
+  "room": "?",
+  "showAlternate": true,
+  "startDate": "?",
+  "ABTest": {
+    "newRoomSorting": "true",
+    "showCrossSell": "true",
+    "deferredCostVariant": "abt|aat"
+  }
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "operationName": "paymentDetailQuery",
+    "variables": {
+      "referenceId": "?",
+      "orderHash": "?",
+      "paymentKey": "ATM_TRANSFER",
+      "paymentType": "atm_transfer"
+    },
+    "query": "query paymentDetailQuery($referenceId: Int!, $orderHash: String!, $paymentKey: String!, $paymentType: String!) {\n  paymentDetail(referenceId: $referenceId, orderHash: $orderHash, paymentKey: $paymentKey) {\n    data {\n      creditCardTokenization {\n        token {\n          cardHolderExpiredMonth\n          cardHolderExpiredYear\n          cardHolderName\n          cardHolderNumber\n          cardHolderType\n          paymentToken\n          __typename\n        }\n        __typename\n      }\n      installmentDetails {\n        currency\n        grandTotal\n        installmentMonth\n        payMonthly\n        text\n        __typename\n      }\n      paymentDetailImages\n      paymentExpired\n      paymentMessage {\n        idID\n        enUS\n        __typename\n      }\n      recentKlikBCAId\n      sidebarPayment {\n        subTotal\n        grandTotal\n        convertedCurrency\n        convertedAmount\n        serviceCharge\n        uniqueCode\n        orderDetail {\n          currency\n          orderName\n          orderNameDetail\n          referenceDetailId\n          productType\n          tixPoint\n          totalPrice\n          breakdownPrice {\n            key\n            value\n            valueString\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      oneKlikCards {\n        maxCard\n        cards {\n          xcoid\n          credentialNumber\n          maxLimit\n          __typename\n        }\n        __typename\n      }\n      checkAvailabilityDiscount {\n        code\n        message\n        data\n        __typename\n      }\n      __typename\n    }\n    code\n    message\n    serverTime\n    __typename\n  }\n  paymentSidebar(referenceId: $referenceId, orderHash: $orderHash) {\n    data {\n      full_name\n      id_card\n      salutation\n      balanceAmount\n      balanceAmountString\n      cashback\n      cashbackString\n      cashbackTIX\n      cashbackTIXString\n      grandTotal\n      grandTotalString\n      referenceId\n      serviceCharge\n      serviceChargeString\n      subTotal\n      subTotalString\n      uniqueCode\n      uniqueCodeString\n      orderDetail {\n        currency\n        orderName\n        orderNameDetail\n        productType\n        referenceDetailId\n        tixPoint\n        totalPrice\n        totalPriceString\n        breakdownPrice {\n          key\n          value\n          valueString\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    code\n    message\n    errors\n    __typename\n  }\n  order(orderId: $referenceId, orderHash: $orderHash, pay: $paymentType)\n}\n"
+  },
+  {
+    "operationName": "orderDetailQuery",
+    "variables": {
+      "referenceId": "?",
+      "orderHash": "?",
+      "paymentKey": "ATM_TRANSFER"
+    },
+    "query": "query orderDetailQuery($referenceId: Int!, $orderHash: String!, $paymentKey: String) {\n  paymentSidebar(referenceId: $referenceId, orderHash: $orderHash, paymentKey: $paymentKey) {\n    data {\n      full_name\n      id_card\n      salutation\n      balanceAmount\n      balanceAmountString\n      cashback\n      cashbackString\n      cashbackTIX\n      cashbackTIXString\n      grandTotal\n      grandTotalString\n      referenceId\n      serviceCharge\n      serviceChargeString\n      subTotal\n      subTotalString\n      uniqueCode\n      uniqueCodeString\n      orderDetail {\n        currency\n        orderName\n        orderNameDetail\n        productType\n        referenceDetailId\n        tixPoint\n        totalPrice\n        totalPriceString\n        breakdownPrice {\n          key\n          value\n          valueString\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    code\n    message\n    errors\n    __typename\n  }\n  order(orderId: $referenceId, orderHash: $orderHash)\n}\n"
+  },
+  {
+    "operationName": "rescheduleCashback",
+    "variables": {
+      "rescheduleOrderId": "?",
+      "rescheduleOrderHash": "?"
+    },
+    "query": "query rescheduleCashback($rescheduleOrderId: Int!, $rescheduleOrderHash: String!) {\n  rescheduleCashback(rescheduleOrderId: $rescheduleOrderId, rescheduleOrderHash: $rescheduleOrderHash) {\n    code\n    message\n    errors\n    data {\n      bankTransfer\n      bankTransferFee\n      breakdownOldPrice {\n        additional\n        name\n        price\n        __typename\n      }\n      breakdownPrice {\n        additional\n        name\n        price\n        __typename\n      }\n      cardHolderName\n      cardNumber\n      cardType\n      cashback\n      cashbackTix\n      cashbackTixWorth\n      ccFee\n      creditcard\n      finalRescheduleCashback\n      kredivo\n      kredivoFee\n      total\n      totalBankTransfer\n      totalCc\n      totalKredivo\n      __typename\n    }\n    __typename\n  }\n}\n"
+  }
+]

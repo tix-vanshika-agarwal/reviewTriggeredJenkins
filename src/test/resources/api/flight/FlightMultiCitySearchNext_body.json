@@ -1,0 +1,10 @@
+{
+    "segment": "2",
+    "cabinClass": "ECONOMY",
+    "adult": 1,
+    "child": 0,
+    "infant": 0,
+    "ffVar": "control",
+    "flightDetails": [],
+    "allRoutes": []
+}

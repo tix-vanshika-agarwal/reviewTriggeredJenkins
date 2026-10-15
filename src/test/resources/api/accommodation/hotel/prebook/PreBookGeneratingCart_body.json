@@ -1,0 +1,23 @@
+{
+  "isMultiOrder": false,
+  "hotels": [
+    {
+      "adult": 1,
+      "childAges": [],
+      "hotelId": "?",
+      "night": 1,
+      "rooms": [
+        {
+          "roomId": "?",
+          "rateCode": "?",
+          "qty": 1,
+          "maxOccupancy": 1,
+          "maxChildOccupancy": 0
+        }
+      ],
+      "startDate": "?"
+    }
+  ],
+  "urlReferer": "",
+  "transactionStatus": ""
+}

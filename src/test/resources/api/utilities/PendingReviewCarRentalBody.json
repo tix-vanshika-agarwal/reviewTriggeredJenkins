@@ -1,0 +1,34 @@
+{
+    "accountId": "?",
+    "userFullName": "?",
+    "lang": "?",
+    "productType": "CAR_RENTAL",
+    "orderId": "?",
+    "orderDetailId": "?",
+    "inventoryId": "1cb975be-afaf-4d88-b65f-866b8ce1cf68",
+    "inventoryName": "Sylvia Rental Jkt Car",
+    "instantNotification": false,
+    "totalItems": 2,
+    "imageUrl": "https://s-gk.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/original/car-model/2020/12/22/6f403742-9265-4f3d-8edb-8b97d32869fa-1608622840735-ed510ebb885847f4d2c9aedfc1c0beed.jpg",
+    "journeyStartDate": "",
+    "journeyEndDate": "",
+    "city": "Jakarta",
+    "region": "bfe73e79-5915-455a-a8f9-c38081222499",
+    "country": "INDONESIA",
+    "additionalInfo": {
+        "fleetName": "Freed ",
+        "fleetID": "fd1fdaf6-f913-4e63-83d1-0efe4354c993",
+        "productSubtype": "WITH_DRIVER",
+        "pickupAddress": "Jl. Prof. DR. Satrio No.4, Kuningan, Karet Kuningan, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12940, Indonesia",
+        "dropoffAddress": "Jl. Prof. DR. Satrio No.4, Kuningan, Karet Kuningan, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12940, Indonesia",
+        "vendorPhoneNo": [
+            "0817277172",
+            "08121111111",
+            "0812222222"
+        ]
+    },
+    "showDate": "2022-11-06T00:10:13.960Z",
+    "expiryDate": "2025-06-28T08:07:13.959Z",
+    "isSubmitted": false,
+    "username": "?"
+}

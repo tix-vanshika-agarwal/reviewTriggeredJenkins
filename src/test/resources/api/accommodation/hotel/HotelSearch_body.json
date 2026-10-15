@@ -1,0 +1,14 @@
+{
+  "adult": "?",
+  "childAges": [],
+  "night": "?",
+  "page": 1,
+  "accommodationType": "?",
+  "room": "?",
+  "searchType": "?",
+  "searchValue": "?",
+  "sort": "popularity",
+  "startDate": "?",
+  "groupFilterKeyword": "?",
+  "currency": "?"
+}

@@ -1,0 +1,29 @@
+{
+    "contact": {
+        "areaCode": "+62",
+        "title": "mr",
+        "fullName": "Dendi",
+        "phone": "81339419724",
+        "emailAddress": "dendi.putra@tiket.com"
+    },
+    "passengers": [
+        {
+            "paxType": "ADULT",
+            "title": "Mr",
+            "fullName": "Dendi",
+            "profileId": "",
+            "dateOfBirth": "1999-01-22",
+            "identityType": "identityNumber",
+            "identityNumber": "327890987657485",
+            "passportNumber": "",
+            "originCity": "Kota Semarang",
+            "vaccineData": {
+                "isSuccess": true,
+                "vaccinationData": null
+            }
+        }
+    ],
+    "latitude": -6.1988233,
+    "longitude": 106.7962326,
+    "licensePlate": "DR1410AQ"
+}

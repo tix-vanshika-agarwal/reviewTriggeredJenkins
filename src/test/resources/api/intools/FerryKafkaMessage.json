@@ -1,0 +1,11 @@
+{
+  "orderID": 1900460380,
+  "orderType": "ferry",
+  "timestamp": 1750332287,
+  "items": [
+    {
+      "itemID": 1900610395,
+      "additionalInfo": "{\"entityId\":\"ID\",\"orderDetailId\":\"1900610395\",\"vendorId\":\"asdp\",\"productName\":\"Pedestrian - 1 Pax\",\"category\":\"Express\",\"bookingCode\":\"A00JK6SP\",\"vendorOrderId\":\"B00251700188333\",\"quantity\":1,\"useDatetime\":\"2025-06-30 14:10:00\",\"checkInDatetime\":\"2025-06-30 08:10:00\",\"timeZone\":7,\"markUpPercentage\":2,\"markUpPercentageCalculated\":1696,\"markUpAmount\":4000,\"basicPrice\":84800,\"publishedFare\":90496,\"campaignName\":null,\"customerCurrency\":\"IDR\",\"vendorPreferredCurrency\":\"IDR\",\"route\":\"Merak - Bakauheni\",\"qrCodeData\":\"Gkvkb1kx3hT79r4HZGrl0w==\",\"vendorPromoCode\":\"\",\"vendorDiscount\":1000,\"adminFee\":2000,\"serviceFee\":5696,\"merchantId\":\"0008\",\"kodeToko\":\"\",\"namaToko\":\"\"}"
+    }
+  ]
+}

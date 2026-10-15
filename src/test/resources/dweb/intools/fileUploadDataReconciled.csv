@@ -1,0 +1,2 @@
+orderId,paymentId,referenceId,transactionDate,timeTransaction,vaNumber,cardNumber,authCode,description,userCurrency,amount,mdr,reportCurrency,amountInReportCurrency,mdrInReportCurrency,pgName,paymentMethod
+1900600941,1900600941-0,123123,2024-07-11,00:00:00,780011200674635,,78001081289590241,"AUTOMATION INTOOLS DASHBOARD,11475,123123,780011200674635,,,",IDR,11475.00,0.00,IDR,11475.00,0.00,VA_BCA_H2H,

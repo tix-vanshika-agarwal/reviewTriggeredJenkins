@@ -1,0 +1,21 @@
+{
+  "productType": "tixhotel",
+  "details": {
+    "hotel": {
+      "policyType": "SAME",
+      "details": [
+        {
+          "categoryName": "ALL",
+          "currency": "IDR",
+          "maxPrice": 0,
+          "minPrice": 0,
+          "countries": [],
+          "starRatings": []
+        }
+      ],
+      "advanceBookingDay": 10,
+      "addOns": false,
+      "insurance": false
+    }
+  }
+}

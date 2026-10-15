@@ -1,0 +1,6 @@
+{
+  "action": "BOOKING",
+  "distributionType": "citilinkDAPI",
+  "url": "https://krakend-gateway-flight-svc.preprod-flight-cluster.tiket.com/krakend-gateway/tix-flight-citilink-v4-integrator/booking",
+  "supplierCode": "tiketcomCitilinkDAPI"
+}

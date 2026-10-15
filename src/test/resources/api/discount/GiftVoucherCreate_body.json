@@ -1,0 +1,36 @@
+{
+  "currency": "IDR",
+  "description": "Testing Automation 2024",
+  "discountAmount": 0,
+  "discountPercentage": 0,
+  "giftVoucherAdjustmentCode": "",
+  "lang": "EN",
+  "maximumVoucherAmount": 0,
+  "minimumTransactionAmount": 0,
+  "sendNotification": false,
+  "shortDescriptions": {
+    "en": "test desc automation en",
+    "id": "test desc automation id"
+  },
+  "termsConditions": {
+    "en": [
+      "tnc automation en"
+    ],
+    "id": [
+      "tnc automation id"
+    ]
+  },
+  "userEmails": [
+    "?"
+  ],
+  "userLock": false,
+  "validFromDate": "2024-01-04 07:31:31",
+  "validUntilDate": "2025-01-04 07:31:31",
+  "validityRestriction": [
+    "FLIGHT",
+    "HOTEL",
+    "AIRPORT_TRANSFER",
+    "EVENT"
+  ],
+  "voucherType": "ELECTRONIC"
+}

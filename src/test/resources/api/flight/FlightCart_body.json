@@ -1,0 +1,11 @@
+{
+    "cartDetails": [
+        {
+            "flightId": "?",
+            "supplierRequest": {
+                "supplierId": "?"
+            },
+            "isFullRefund": false
+        }
+    ]
+}

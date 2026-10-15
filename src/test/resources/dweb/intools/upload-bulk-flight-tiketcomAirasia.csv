@@ -1,0 +1,2 @@
+no,vertical,vendorId,subVendorName,depositName,paymentTimestamp,orderId,orderDetailId,tiketBookingCode,splitCode,ticketNumber,typeOfTransaction,amount,typeOfAmount,description,category
+1,flight,tiketcomAirasia,,Main Deposit,2026-03-25 15:15:15,,,,,,amount,100000,Addition,,

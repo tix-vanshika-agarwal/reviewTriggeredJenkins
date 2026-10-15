@@ -1,0 +1,7 @@
+{
+  "type": "EMAIL_PASSWORD",
+  "identity": "?",
+  "secret": "?",
+  "ref": "?",
+  "codeChallenge": "?"
+}

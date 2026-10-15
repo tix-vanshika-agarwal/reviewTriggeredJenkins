@@ -1,0 +1,161 @@
+{
+  "hasExpiredBudget": false,
+  "dynamicPromoRuleName": "No adjustment",
+  "uuid": "",
+  "budgetId": "6936556fa115fb0020e8b2c2",
+  "toggleNewConfiguration": true,
+  "budgetingSystemFlag": "BUDGET_ONLY",
+  "isGenerateTnc": true,
+  "affiliateSettings": {
+    "affiliateAudience": "EVERYONE",
+    "affiliatePartnerList": []
+  },
+  "registeredOnWhitelistDashboard": false,
+  "metadata": {
+    "dropdownMandatory": "val1"
+  },
+  "tags": [
+    "(tags)"
+  ],
+  "editQuotaAndCampaignPeriods": true,
+  "remainingQuotaPromoCodeLevel": "(quotaPromoCodeLevel)",
+  "refreshQuotaPromoCodeLevel": true,
+  "quotaLevel": "(quotaLevel)",
+  "quotaPromoCodeLevel": "(quotaPromoCodeLevel)",
+  "id": "",
+  "description": "APIAUTOMATION2024",
+  "isExcludedPromoSuggestion": false,
+  "code": "(code)",
+  "fraudPrevention": {
+    "phoneNumberVerification": "BOTH",
+    "userLogin": "BOTH",
+    "platforms": [
+      "ANDROID",
+      "IOS",
+      "DESKTOP",
+      "MOBILE"
+    ],
+    "usageCount": "1",
+    "usagePeriod": "PERIOD",
+    "validatedBy": "DEVICE_ID_USERNAME",
+    "validatedByList": [
+      "DEVICE_ID",
+      "USERNAME"
+    ]
+  },
+  "ruleSets": [
+    {
+      "discountRules": [
+        {
+          "quota": 0,
+          "refreshQuota": true,
+          "promoCodePriceRangeObject": {
+            "maxPrice": 10000000,
+            "minPrice": 10000,
+            "promoCodeDiscount": {
+              "maxValue": 10,
+              "percent": 0,
+              "value": 10
+            },
+            "paymentMethodObjectList": [
+              {
+                "paymentMethodName": "ALL_PAYMENT_METHODS",
+                "binNumberListRaw": [],
+                "binNumbers": [],
+                "tenor": []
+              }
+            ]
+          },
+          "promoCodeCost": {
+            "companyCost": [
+              {
+                "maxValue": 0,
+                "percent": 100,
+                "value": 0,
+                "name": "TIKET.COM"
+              }
+            ],
+            "partnerCost": [
+              {
+                "maxValue": 0,
+                "percent": 0,
+                "value": 0,
+                "name": ""
+              }
+            ],
+            "companyCostCashback": [
+              {
+                "maxValue": 0,
+                "percent": 0,
+                "value": 0,
+                "name": "TIKET.COM"
+              }
+            ],
+            "partnerCostCashback": [
+              {
+                "maxValue": 0,
+                "percent": 0,
+                "value": 0,
+                "name": ""
+              }
+            ]
+          },
+          "uuid": "",
+          "metadata": {},
+          "budgetId": null
+        }
+      ],
+      "transactionRules": [
+        {
+          "param": "orderType",
+          "productType": "5acf301ef93a013fae154589",
+          "promoCodeRuleValue": {
+            "operator": "IN",
+            "value": "railink|airport_transfer|bus|car|event|ferry|flight|giftcard_product|hotel|standalone_insurance|tixhotel|train"
+          },
+          "usedForCalculate": false,
+          "dynamicValue": false
+        }
+      ],
+      "quota": 0,
+      "totalQuota": 0,
+      "showingTag": true,
+      "identifier": "",
+      "metadata": {}
+    }
+  ],
+  "verticals": [
+    "GENERAL"
+  ],
+  "division": "BEN",
+  "currency": "IDR",
+  "campaignType": "640193a93ffac102f5840a76",
+  "campaignPeriods": [
+    {
+      "startDate": "(startDate)",
+      "endDate": "(endDate)",
+      "campaignPeriodType": "CONTINUOUSLY"
+    }
+  ],
+  "campaignName": "(campaignName)",
+  "maxDiscount": 10,
+  "promoCodeStatus": "",
+  "createdDate": "(createdDate)",
+  "createdBy": "(username)",
+  "updatedDate": "(updatedDate)",
+  "updatedBy": "(username)",
+  "shortDescription": [
+    {
+      "lang": "en",
+      "description": "APIAUTOMATION2024",
+      "termsCondition": "<p>APIAUTOMATION2024</p>"
+    },
+    {
+      "lang": "id",
+      "description": "APIAUTOMATION2024",
+      "termsCondition": "<p>APIAUTOMATION2024</p>"
+    }
+  ],
+  "promoCodeCombine": false,
+  "promoCodeDiscountType": "INSTANT"
+}

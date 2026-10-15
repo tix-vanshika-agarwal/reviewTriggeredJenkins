@@ -1,0 +1,21 @@
+{
+  "hotels": [
+    {
+      "adult": 0,
+      "childAges": [],
+      "hotelId": "?",
+      "night": 0,
+      "startDate": "?",
+      "rooms": [
+        {
+          "maxChildOccupancy": 0,
+          "maxOccupancy": 0,
+          "qty": 0,
+          "rateCode": "?",
+          "roomId": "?"
+        }
+      ]
+    }
+  ],
+  "isMultiOrder": true
+}

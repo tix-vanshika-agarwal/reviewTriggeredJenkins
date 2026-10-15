@@ -1,0 +1,70 @@
+{
+  "name": "testing12",
+  "assignees": {
+    "source": "POLICY",
+    "excludedEmployeeIDs": [],
+    "employeeIDs": [],
+    "departmentIDs": [],
+    "groupIDs": [],
+    "allEmployees": false
+  },
+  "details": {
+    "flight": {
+      "policyType": "SAME",
+      "advanceBookingDay": 0,
+      "addOns": false,
+      "insurance": true,
+      "details": [
+        {
+          "airlines": [],
+          "currency": "IDR",
+          "maxPrice": 0,
+          "minPrice": 0,
+          "seatClass": [],
+          "routeName": "ALL",
+          "categoryName": "flight_policy_category_all"
+        }
+      ]
+    },
+    "hotel": {
+      "policyType": "SAME",
+      "advanceBookingDay": 0,
+      "addOns": false,
+      "insurance": false,
+      "details": [
+        {
+          "currency": "IDR",
+          "maxPrice": 0,
+          "minPrice": 0,
+          "starRatings": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "categoryName": "ALL",
+          "countries": []
+        }
+      ]
+    },
+    "airportTransfer": {
+      "enableBooking": true
+    },
+    "train": {
+      "enableBooking": true
+    },
+    "bus": {
+      "enableBooking": true
+    },
+    "ferry": {
+      "enableBooking": true
+    },
+    "car": {
+      "enableBooking": true
+    },
+    "event": {
+      "enableBooking": true
+    }
+  }
+}

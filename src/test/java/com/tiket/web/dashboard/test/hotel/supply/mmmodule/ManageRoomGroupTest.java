@@ -1,0 +1,839 @@
+package com.tiket.web.dashboard.test.hotel.supply.mmmodule;
+
+import com.tiket.annotation.Author;
+import com.tiket.annotation.Module;
+import com.tiket.annotation.Tribe;
+import com.tiket.annotation.Vertical;
+import com.tiket.apiPage.MmDashboardApi;
+import com.tiket.core.CoreFunctions;
+import com.tiket.model.Session;
+import com.tiket.testbase.Assertion;
+import com.tiket.testbase.BaseTest;
+import com.tiket.web.dashboard.page.common.LoginMemberAdmin;
+import com.tiket.web.dashboard.page.hotel.supply.mmmodule.HotelLibraryPage;
+import com.tiket.web.dashboard.page.hotel.supply.mmmodule.LoginPage;
+import com.tiket.web.dashboard.page.hotel.supply.mmmodule.ManageRoomGroupPage;
+import com.tiket.web.dashboard.page.member_dashboard.MemberLoginPage;
+import org.testng.annotations.Test;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static com.tiket.testdata.TestData.getParam;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.core.Is.is;
+
+public class ManageRoomGroupTest extends BaseTest {
+
+    @Author(names = {"Mridul"})
+    @Module(name = "ManageRoomGroup")
+    @Tribe(name = "Supply")
+    @Vertical(name = "Accommodation")
+    @Test
+    public void testManageRoomGroup() {
+        Map<String, String> param = getParam("testManageRoomGroup");
+        BaseTest.paramsThreadLocal.set(param);
+
+        Session<?> session = BaseTest.sessionThreadLocal.get();
+        LoginPage<?> loginPage = new LoginPage<>(session);
+        HotelLibraryPage<?> hotelLibraryPage = new HotelLibraryPage<>(session);
+        ManageRoomGroupPage<?> manageRoomGroupPage = new ManageRoomGroupPage<>(session);
+
+        String vendorName = param.get("vendorName");
+        String vendorExternalId = param.get("vendorExternalId");
+        String propertyName = param.get("propertyName");
+        String bedType = param.get("bedType");
+        String bedType2 = param.get("bedType2");
+        String roomType = param.get("roomType");
+        String roomType2 = param.get("roomType2");
+        String roomType3 = param.get("roomType3");
+        String roomType4 = param.get("roomType4");
+        String roomFacilities = param.get("roomFacilities");
+        String roomFacilities2 = param.get("roomFacilities2");
+
+        String username = param.get("username");
+        String password = param.get("password");
+
+        String customRoomGroupName = "Automation " + CoreFunctions.generateRandomString(6);
+        String editedCustomRoomGroupName = "Automation " + CoreFunctions.generateRandomString(6);
+        String roomSize = String.valueOf(CoreFunctions.generateRandomInt(15, 60));
+
+        String name1 = "";
+        String name2 = "";
+        String name3 = "";
+
+        try {
+
+            step("Open MM Module");
+            loginPage.openMMModule(username, password);
+            Assertion.assertThat("Hotel Library page is loaded", hotelLibraryPage.isHotelLibraryPageLoaded(), is(true));
+            Assertion.assertThat("Search result is displayed", hotelLibraryPage.isSearchResultHotelNameLabelDisplayed(), is(true));
+
+            step("Filter Hotel Library by vendor name and vendor hotel id");
+            hotelLibraryPage.clickSearchByVendorId();
+            hotelLibraryPage.selectVendorName(vendorName);
+            Assertion.assertThat(String.format("Vendor name selected: %s", vendorName), hotelLibraryPage.isVendorNameSelected(vendorName), is(true));
+            hotelLibraryPage.inputVendorID(vendorExternalId);
+            hotelLibraryPage.clickSearch();
+            Assertion.assertThat(String.format("%s is displayed in search result", propertyName), hotelLibraryPage.isSearchResultHotelNameLabelDisplayed(propertyName), is(true));
+
+            step("Open Manage Room Groups from Action menu");
+            hotelLibraryPage.clickAction();
+            hotelLibraryPage.clickManageRoomGroups();
+            Assertion.assertThat("Manage Room Group page is loaded", manageRoomGroupPage.isManageRoomGroupPageLoaded(), is(true));
+
+            step("Create new room group without bed type, room type, room size, and room facilities using custom room group name");
+            manageRoomGroupPage.clickCreateRoomGroup();
+            Assertion.assertThat("Room group form is displayed", manageRoomGroupPage.isRoomGroupFormDisplayed(), is(true));
+            manageRoomGroupPage.fillRoomGroupForm(ManageRoomGroupPage.NAME_MODE_CUSTOM, customRoomGroupName, "", "", "", "");
+            manageRoomGroupPage.submitRoomGroup();
+            Assertion.assertThat("Successful snackbar is appeared", manageRoomGroupPage.isSuccessfulSnackbarAppeared(), is(true));
+            Assertion.assertThat(String.format("Room group %s is displayed on the room group list", customRoomGroupName), manageRoomGroupPage.isRoomGroupDisplayedInList(customRoomGroupName), is(true));
+
+            step("Create new room group with bed type and room type using generated by system room group name");
+            manageRoomGroupPage.clickCreateRoomGroup();
+            Assertion.assertThat("Room group form is displayed", manageRoomGroupPage.isRoomGroupFormDisplayed(), is(true));
+            String systemRoomGroupName = manageRoomGroupPage.fillRoomGroupForm(ManageRoomGroupPage.NAME_MODE_SYSTEM, "", bedType, roomType, "", "");
+            manageRoomGroupPage.submitRoomGroup();
+            Assertion.assertThat("Successful snackbar is appeared", manageRoomGroupPage.isSuccessfulSnackbarAppeared(), is(true));
+            Assertion.assertThat(String.format("Room group %s is displayed on the room group list", systemRoomGroupName), manageRoomGroupPage.isRoomGroupDisplayedInList(systemRoomGroupName), is(true));
+
+            step("Create new room group with complete attributes using generated by system room group name");
+            manageRoomGroupPage.clickCreateRoomGroup();
+            Assertion.assertThat("Room group form is displayed", manageRoomGroupPage.isRoomGroupFormDisplayed(), is(true));
+            String completeRoomGroupName = manageRoomGroupPage.fillRoomGroupForm(ManageRoomGroupPage.NAME_MODE_SYSTEM, "", bedType, roomType2, roomSize, roomFacilities);            manageRoomGroupPage.submitRoomGroup();
+            Assertion.assertThat("Successful snackbar is appeared", manageRoomGroupPage.isSuccessfulSnackbarAppeared(), is(true));
+            Assertion.assertThat(String.format("Room group %s is displayed on the room group list", completeRoomGroupName), manageRoomGroupPage.isRoomGroupDisplayedInList(completeRoomGroupName), is(true));
+
+            step("Edit existing room group become without bed type, room type, room size, and room facilities using custom room group name");
+            manageRoomGroupPage.clickEditRoomGroupByName(customRoomGroupName);
+            Assertion.assertThat("Room group form is displayed", manageRoomGroupPage.isRoomGroupFormDisplayed(), is(true));
+            manageRoomGroupPage.fillRoomGroupForm(ManageRoomGroupPage.NAME_MODE_CUSTOM, editedCustomRoomGroupName, "", "", "", "");
+            manageRoomGroupPage.submitRoomGroup();
+            Assertion.assertThat("Successful snackbar is appeared", manageRoomGroupPage.isSuccessfulSnackbarAppeared(), is(true));
+            Assertion.assertThat(String.format("Room group %s is updated correctly", editedCustomRoomGroupName), manageRoomGroupPage.isRoomGroupDisplayedInList(editedCustomRoomGroupName), is(true));
+            name1 = editedCustomRoomGroupName;
+
+            step("Edit existing room group become with bed type and room type using generated by system room group name");
+            manageRoomGroupPage.clickEditRoomGroupByName(systemRoomGroupName);
+            Assertion.assertThat("Room group form is displayed", manageRoomGroupPage.isRoomGroupFormDisplayed(), is(true));
+            String editedSystemRoomGroupName = manageRoomGroupPage.fillRoomGroupForm(ManageRoomGroupPage.NAME_MODE_SYSTEM, "", bedType2, roomType3, "", "");
+            manageRoomGroupPage.submitRoomGroup();
+            Assertion.assertThat("Successful snackbar is appeared", manageRoomGroupPage.isSuccessfulSnackbarAppeared(), is(true));
+            Assertion.assertThat(String.format("Room group %s is updated correctly", editedSystemRoomGroupName), manageRoomGroupPage.isRoomGroupDisplayedInList(editedSystemRoomGroupName), is(true));
+            name2 = editedSystemRoomGroupName;
+
+            step("Edit existing room group become with complete attributes using generated by system room group name");
+            manageRoomGroupPage.clickEditRoomGroupByName(completeRoomGroupName);
+            Assertion.assertThat("Room group form is displayed", manageRoomGroupPage.isRoomGroupFormDisplayed(), is(true));
+            String editedCompleteRoomGroupName = manageRoomGroupPage.fillRoomGroupForm(ManageRoomGroupPage.NAME_MODE_SYSTEM, "", bedType2, roomType4, roomSize, roomFacilities2);
+            manageRoomGroupPage.submitRoomGroup();
+            Assertion.assertThat("Successful snackbar is appeared", manageRoomGroupPage.isSuccessfulSnackbarAppeared(), is(true));
+            Assertion.assertThat(String.format("Room group %s is updated correctly", editedCompleteRoomGroupName), manageRoomGroupPage.isRoomGroupDisplayedInList(editedCompleteRoomGroupName), is(true));
+            name3 = editedCompleteRoomGroupName;
+        }
+        finally {
+            step("Delete room group which has empty rooms and validate it's not showing on room group list anymore");
+            if(!name1.isEmpty()) {
+                Assertion.assertThat(String.format("Room group %s has empty rooms", name1), manageRoomGroupPage.getRoomCountOfRoomGroup(name1), is(0));
+                manageRoomGroupPage.deleteRoomGroupByName(name1);
+                Assertion.assertThat(String.format("Room group %s is not displayed on the room group list anymore", name1), manageRoomGroupPage.isRoomGroupNotDisplayedInList(name1), is(true));
+            }
+
+            step("Delete room group which has empty rooms and validate it's not showing on room group list anymore");
+            if(!name2.isEmpty()) {
+                Assertion.assertThat(String.format("Room group %s has empty rooms", name2), manageRoomGroupPage.getRoomCountOfRoomGroup(name2), is(0));
+                manageRoomGroupPage.deleteRoomGroupByName(name2);
+                Assertion.assertThat(String.format("Room group %s is not displayed on the room group list anymore", name2), manageRoomGroupPage.isRoomGroupNotDisplayedInList(name2), is(true));
+            }
+
+            step("Delete room group which has empty rooms and validate it's not showing on room group list anymore");
+            if(!name3.isEmpty()) {
+                Assertion.assertThat(String.format("Room group %s has empty rooms", name3), manageRoomGroupPage.getRoomCountOfRoomGroup(name3), is(0));
+                manageRoomGroupPage.deleteRoomGroupByName(name3);
+                Assertion.assertThat(String.format("Room group %s is not displayed on the room group list anymore", name3), manageRoomGroupPage.isRoomGroupNotDisplayedInList(name3), is(true));
+            }
+        }
+    }
+
+    @Author(names = {"Mridul"})
+    @Module(name = "ManageRoomGroup")
+    @Tribe(name = "Supply")
+    @Vertical(name = "Accommodation")
+    @Test
+    public void testMoveRoomGroup() {
+        Map<String, String> param = getParam("testMoveRoomGroup");
+        BaseTest.paramsThreadLocal.set(param);
+
+        Session<?> session = BaseTest.sessionThreadLocal.get();
+        LoginPage<?> loginPage = new LoginPage<>(session);
+        HotelLibraryPage<?> hotelLibraryPage = new HotelLibraryPage<>(session);
+        ManageRoomGroupPage<?> manageRoomGroupPage = new ManageRoomGroupPage<>(session);
+        MmDashboardApi<?> mmDashboardApi = new MmDashboardApi<>(session);
+
+        String vendorName = param.get("vendorName");
+        String vendorExternalId = param.get("vendorExternalId");
+        String propertyName = param.get("propertyName");
+
+        String sourceGroup = param.get("sourceGroup");
+        String targetGroup = param.get("targetGroup");
+
+        String username = param.get("username");
+        String password = param.get("password");
+
+        // roomId -> its original grouping key, captured before each move. In the finally block every
+        // room is moved back to its original group (or "Others") so the case stays stable on re-runs.
+        Map<String, String> roomToOriginalGroupingKey = new LinkedHashMap<>();
+        String hotelId = null;
+
+        step("Open MM Module");
+        loginPage.openMMModule(username, password);
+        Assertion.assertThat("Hotel Library page is loaded", hotelLibraryPage.isHotelLibraryPageLoaded(), is(true));
+        Assertion.assertThat("Search result is displayed", hotelLibraryPage.isSearchResultHotelNameLabelDisplayed(), is(true));
+
+        step("Filter Hotel Library by vendor name and vendor hotel id");
+        hotelLibraryPage.clickSearchByVendorId();
+        hotelLibraryPage.selectVendorName(vendorName);
+        Assertion.assertThat(String.format("Vendor name selected: %s", vendorName), hotelLibraryPage.isVendorNameSelected(vendorName), is(true));
+        hotelLibraryPage.inputVendorID(vendorExternalId);
+        hotelLibraryPage.clickSearch();
+        Assertion.assertThat(String.format("%s is displayed in search result", propertyName), hotelLibraryPage.isSearchResultHotelNameLabelDisplayed(propertyName), is(true));
+
+        step("Open Manage Room Groups from Action menu");
+        hotelLibraryPage.clickAction();
+        hotelLibraryPage.clickManageRoomGroups();
+        Assertion.assertThat("Manage Room Group page is loaded", manageRoomGroupPage.isManageRoomGroupPageLoaded(), is(true));
+        hotelId = manageRoomGroupPage.getHotelIdFromUrl();
+
+        // Snapshot each mapped room's original grouping key so moved rooms can be reverted exactly.
+        // Best-effort: if unavailable, source-group reverts are skipped (Others reverts still work).
+        Map<String, String> originalGroupingKeys = new HashMap<>();
+        try {
+            originalGroupingKeys = mmDashboardApi.fetchMappedRoomGroupingKeys(vendorName, vendorExternalId);
+        } catch (Exception ignored) {
+        }
+
+        try {
+            step("Move room from existing room group to another one through room group list");
+            manageRoomGroupPage.refreshPage();
+            int srcBefore1 = manageRoomGroupPage.getRoomCountOfGroup(sourceGroup);
+            int tgtBefore1 = manageRoomGroupPage.getRoomCountOfGroup(targetGroup);
+            String movedRoom1 = manageRoomGroupPage.getFirstRoomId(sourceGroup, vendorName, vendorExternalId);
+            roomToOriginalGroupingKey.put(movedRoom1, originalGroupingKeys.get(movedRoom1));
+            manageRoomGroupPage.moveFirstRoomToExistingGroupViaList(sourceGroup, targetGroup, vendorName, vendorExternalId);
+            manageRoomGroupPage.refreshPage();
+            int tgtAfter1 = manageRoomGroupPage.getRoomCountOfGroup(targetGroup);
+            int srcAfter1 = manageRoomGroupPage.getRoomCountOfGroup(sourceGroup);
+            Assertion.assertThat(String.format("%s room count increased by 1", targetGroup), tgtAfter1, is(tgtBefore1 + 1));
+            Assertion.assertThat(String.format("%s room count decreased by 1", sourceGroup), srcAfter1, is(srcBefore1 - 1));
+
+            step("Move room from existing room group to new room group through room group list");
+            manageRoomGroupPage.refreshPage();
+            int srcBefore2 = manageRoomGroupPage.getRoomCountOfGroup(sourceGroup);
+            int groupsBefore2 = manageRoomGroupPage.getRoomGroupCount();
+            String movedRoom2 = manageRoomGroupPage.getFirstRoomId(sourceGroup, vendorName, vendorExternalId);
+            roomToOriginalGroupingKey.put(movedRoom2, originalGroupingKeys.get(movedRoom2));
+            manageRoomGroupPage.moveFirstRoomToNewGroupViaList(sourceGroup, vendorName, vendorExternalId);
+            manageRoomGroupPage.refreshPage();
+            int groupsAfter2 = manageRoomGroupPage.getRoomGroupCount();
+            int srcAfter2 = manageRoomGroupPage.getRoomCountOfGroup(sourceGroup);
+            Assertion.assertThat("A new room group is created (room group count increased by 1)", groupsAfter2, is(groupsBefore2 + 1));
+            Assertion.assertThat(String.format("%s room count decreased by 1", sourceGroup), srcAfter2, is(srcBefore2 - 1));
+
+            step("Move room from \"Others\" section to existing room group through room group list");
+            manageRoomGroupPage.refreshPage();
+            int othersBefore3 = manageRoomGroupPage.getRoomCountOfGroup("Others");
+            int tgtBefore3 = manageRoomGroupPage.getRoomCountOfGroup(targetGroup);
+            String movedRoom3 = manageRoomGroupPage.getFirstRoomId("Others", vendorName, vendorExternalId);
+            roomToOriginalGroupingKey.put(movedRoom3, MmDashboardApi.OTHERS_GROUPING_KEY);
+            manageRoomGroupPage.moveFirstRoomFromOthersToExistingGroupViaList(targetGroup, vendorName, vendorExternalId);
+            manageRoomGroupPage.refreshPage();
+            int tgtAfter3 = manageRoomGroupPage.getRoomCountOfGroup(targetGroup);
+            int othersAfter3 = manageRoomGroupPage.getRoomCountOfGroup("Others");
+            Assertion.assertThat(String.format("%s room count increased by 1", targetGroup), tgtAfter3, is(tgtBefore3 + 1));
+            Assertion.assertThat("\"Others\" room count decreased by 1", othersAfter3, is(othersBefore3 - 1));
+
+            step("Move room from existing room group to another one through move multiple rooms");
+            manageRoomGroupPage.refreshPage();
+            int srcBefore4 = manageRoomGroupPage.getRoomCountOfGroup(sourceGroup);
+            int tgtBefore4 = manageRoomGroupPage.getRoomCountOfGroup(targetGroup);
+            for (String id : manageRoomGroupPage.getFirstNRoomIds(sourceGroup, 2, vendorName, vendorExternalId)) {
+                roomToOriginalGroupingKey.put(id, originalGroupingKeys.get(id));
+            }
+            int moved4 = manageRoomGroupPage.moveMultipleRoomsToExistingGroup(sourceGroup, 2, targetGroup, vendorName, vendorExternalId);
+            manageRoomGroupPage.refreshPage();
+            int tgtAfter4 = manageRoomGroupPage.getRoomCountOfGroup(targetGroup);
+            int srcAfter4 = manageRoomGroupPage.getRoomCountOfGroup(sourceGroup);
+            Assertion.assertThat(String.format("%s room count increased by %d", targetGroup, moved4), tgtAfter4, is(tgtBefore4 + moved4));
+            Assertion.assertThat(String.format("%s room count decreased by %d", sourceGroup, moved4), srcAfter4, is(srcBefore4 - moved4));
+
+            step("Move room from existing room group to new room group through move multiple rooms");
+            manageRoomGroupPage.refreshPage();
+            int srcBefore5 = manageRoomGroupPage.getRoomCountOfGroup(sourceGroup);
+            int groupsBefore5 = manageRoomGroupPage.getRoomGroupCount();
+            for (String id : manageRoomGroupPage.getFirstNRoomIds(sourceGroup, 2, vendorName, vendorExternalId)) {
+                roomToOriginalGroupingKey.put(id, originalGroupingKeys.get(id));
+            }
+            int moved5 = manageRoomGroupPage.moveMultipleRoomsToNewGroup(sourceGroup, 2, vendorName, vendorExternalId);
+            manageRoomGroupPage.refreshPage();
+            int groupsAfter5 = manageRoomGroupPage.getRoomGroupCount();
+            int srcAfter5 = manageRoomGroupPage.getRoomCountOfGroup(sourceGroup);
+            Assertion.assertThat("A new room group is created (room group count increased by 1)", groupsAfter5, is(groupsBefore5 + 1));
+            Assertion.assertThat(String.format("%s room count decreased by %d", sourceGroup, moved5), srcAfter5, is(srcBefore5 - moved5));
+
+            step("Move room from \"Others\" section to existing room group through move multiple rooms");
+            manageRoomGroupPage.refreshPage();
+            int othersBefore6 = manageRoomGroupPage.getRoomCountOfGroup("Others");
+            int tgtBefore6 = manageRoomGroupPage.getRoomCountOfGroup(targetGroup);
+            for (String id : manageRoomGroupPage.getFirstNRoomIds("Others", 2, vendorName, vendorExternalId)) {
+                roomToOriginalGroupingKey.put(id, MmDashboardApi.OTHERS_GROUPING_KEY);
+            }
+            int moved6 = manageRoomGroupPage.moveMultipleRoomsFromOthersToExistingGroup(2, targetGroup, vendorName, vendorExternalId);
+            manageRoomGroupPage.refreshPage();
+            int tgtAfter6 = manageRoomGroupPage.getRoomCountOfGroup(targetGroup);
+            int othersAfter6 = manageRoomGroupPage.getRoomCountOfGroup("Others");
+            Assertion.assertThat(String.format("%s room count increased by %d", targetGroup, moved6), tgtAfter6, is(tgtBefore6 + moved6));
+            Assertion.assertThat(String.format("\"Others\" room count decreased by %d", moved6), othersAfter6, is(othersBefore6 - moved6));
+
+            step("Click \"Organize rooms by system\" button and validate the successful snackbar and countdown timer is showing");
+            manageRoomGroupPage.clickOrganizeRoomsBySystem();
+            Assertion.assertThat("Successful snackbar is appeared", manageRoomGroupPage.isOrganizeSuccessSnackbarAppeared(), is(true));
+            Assertion.assertThat("Countdown timer is showing", manageRoomGroupPage.isCountdownTimerDisplayed(), is(true));
+        } finally {
+            step("Cleanup: move rooms back to their original group so the case stays stable");
+            String cookie = manageRoomGroupPage.getBrowserCookieHeader();
+            mmDashboardApi.moveRoomsBackToOriginalGroups(cookie, hotelId, vendorName, vendorExternalId, roomToOriginalGroupingKey);
+        }
+    }
+
+    /** F1 — Verify → Unverify round-trip on a single RG. */
+    @Author(names = {"Raihan"})
+    @Module(name = "ManageRoomGroup")
+    @Tribe(name = "Supply")
+    @Vertical(name = "Accommodation")
+    @Test
+    public void testVerifyUnverifyRoundTripFlow() {
+        Map<String, String> param = getParam("testVerifyUnverifyRoundTripFlow");
+        BaseTest.paramsThreadLocal.set(param);
+
+        Session<?> session = BaseTest.sessionThreadLocal.get();
+        MemberLoginPage<?> memberLoginPage = new MemberLoginPage<>(session);
+        LoginMemberAdmin<?> loginMemberAdmin = new LoginMemberAdmin<>(session);
+        ManageRoomGroupPage<?> manageRoomGroupPage = new ManageRoomGroupPage<>(session);
+        MmDashboardApi<?> mmDashboardApi = new MmDashboardApi<>(session);
+
+        String vendorName = param.get("vendorName");
+        String vendorExternalId = param.get("vendorExternalId");
+        String roomGroupName = param.get("roomGroupName");
+        String username = param.get("username");
+        String password = param.get("password");
+
+        step("Resolve hotelId via BE (skips Hotel Library UI search flow)");
+        String hotelId = mmDashboardApi.getHotelIdByVendor(vendorName, vendorExternalId);
+
+        step("User log in to Panel dashboard and open Manage Room Group page directly");
+        memberLoginPage.gotoMemberLoginPage();
+        memberLoginPage.adminLogin(username, password);
+        loginMemberAdmin.gotoHome();
+        manageRoomGroupPage.openManageRoomGroupByHotelId(hotelId);
+        Assertion.assertThat("Manage Room Group page is loaded", manageRoomGroupPage.isManageRoomGroupPageLoaded(), is(true));
+
+        step("Open the target room group in the left sidebar so its card is rendered in the main content");
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+
+        step("Baseline: reset every room in the test RG to Unverified so the flow starts from a known state");
+        manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupName);
+
+        step("Refresh page and re-open the target room group in the sidebar (refresh clears the selection)");
+        manageRoomGroupPage.refreshPage();
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+        int rowCount = manageRoomGroupPage.getRoomRowCountInGroup(roomGroupName);
+        Assertion.assertThat(String.format("Test RG %s has rooms to operate on", roomGroupName), rowCount, is(greaterThanOrEqualTo(1)));
+        Assertion.assertThat("Test RG is not verified before starting", manageRoomGroupPage.isRoomGroupVerified(roomGroupName), is(false));
+
+        try {
+            step("TC01 — Verify a single room (row 1) and confirm the modal");
+            manageRoomGroupPage.clickEditVerification(roomGroupName);
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 1);
+            Assertion.assertThat("Selection counter shows 1", manageRoomGroupPage.getSelectedCount(), is(1));
+            Assertion.assertThat("Verify button is enabled for 1 unverified selected", manageRoomGroupPage.isVerifyButtonEnabled(), is(true));
+            manageRoomGroupPage.clickVerify();
+            Assertion.assertThat("Verify confirm modal is displayed", manageRoomGroupPage.isVerifyConfirmModalDisplayed(), is(true));
+            manageRoomGroupPage.confirmVerify();
+            Assertion.assertThat("\"Successfully verified\" snackbar appeared", manageRoomGroupPage.isVerifySuccessSnackbarAppeared(), is(true));
+            manageRoomGroupPage.refreshPage();
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+            Assertion.assertThat("Row 1 shows green verified indicator", manageRoomGroupPage.isNthRoomVerified(roomGroupName, 1), is(true));
+            Assertion.assertThat("RG-level badge is NOT shown (some rooms still unverified)", manageRoomGroupPage.isRoomGroupVerified(roomGroupName), is(false));
+
+            step("TC03 / TC15 — Select All and Verify remaining rooms; RG-level indicator turns on");
+            manageRoomGroupPage.clickEditVerification(roomGroupName);
+            manageRoomGroupPage.clickSelectAllVerifyCheckbox();
+            Assertion.assertThat(String.format("Selection counter equals row count (%d)", rowCount), manageRoomGroupPage.getSelectedCount(), is(rowCount));
+            manageRoomGroupPage.clickVerify();
+            manageRoomGroupPage.confirmVerify();
+            Assertion.assertThat("\"Successfully verified\" snackbar appeared", manageRoomGroupPage.isVerifySuccessSnackbarAppeared(), is(true));
+            manageRoomGroupPage.refreshPage();
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+            Assertion.assertThat("RG-level \"Verified\" badge is displayed after all rooms verified", manageRoomGroupPage.isRoomGroupVerified(roomGroupName), is(true));
+
+            step("TC07 / TC16 — Unverify a single row; RG-level indicator turns back off");
+            manageRoomGroupPage.clickEditVerification(roomGroupName);
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 1);
+            Assertion.assertThat("Unverify button is enabled for a verified-only selection", manageRoomGroupPage.isUnverifyButtonEnabled(), is(true));
+            manageRoomGroupPage.clickUnverify();
+            Assertion.assertThat("Unverify confirm modal is displayed", manageRoomGroupPage.isUnverifyConfirmModalDisplayed(), is(true));
+            manageRoomGroupPage.confirmUnverify();
+            Assertion.assertThat("\"Successfully unverified\" snackbar appeared", manageRoomGroupPage.isUnverifySuccessSnackbarAppeared(), is(true));
+            manageRoomGroupPage.refreshPage();
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+            Assertion.assertThat("Row 1 shows grey unverified indicator", manageRoomGroupPage.isNthRoomUnverified(roomGroupName, 1), is(true));
+            Assertion.assertThat("RG-level badge is removed (mixed state)", manageRoomGroupPage.isRoomGroupVerified(roomGroupName), is(false));
+
+            step("TC09 — Select All and Unverify the remaining verified rooms");
+            manageRoomGroupPage.clickEditVerification(roomGroupName);
+            manageRoomGroupPage.clickSelectAllVerifyCheckbox();
+            manageRoomGroupPage.clickUnverify();
+            manageRoomGroupPage.confirmUnverify();
+            Assertion.assertThat("\"Successfully unverified\" snackbar appeared", manageRoomGroupPage.isUnverifySuccessSnackbarAppeared(), is(true));
+            manageRoomGroupPage.refreshPage();
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+            Assertion.assertThat("Row 1 is unverified after full reset", manageRoomGroupPage.isNthRoomUnverified(roomGroupName, 1), is(true));
+        } finally {
+            step("Cleanup: re-open the target RG in the sidebar and reset every room back to Unverified");
+            try { manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName); } catch (Exception ignored) { /* best-effort cleanup */ }
+            manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupName);
+        }
+    }
+
+    /** F2 — Verified indicators + filter behavior on the Manage Room Group page. */
+    @Author(names = {"Raihan"})
+    @Module(name = "ManageRoomGroup")
+    @Tribe(name = "Supply")
+    @Vertical(name = "Accommodation")
+    @Test
+    public void testIndicatorsAndFiltersFlow() {
+        Map<String, String> param = getParam("testIndicatorsAndFiltersFlow");
+        BaseTest.paramsThreadLocal.set(param);
+
+        Session<?> session = BaseTest.sessionThreadLocal.get();
+        MemberLoginPage<?> memberLoginPage = new MemberLoginPage<>(session);
+        LoginMemberAdmin<?> loginMemberAdmin = new LoginMemberAdmin<>(session);
+        ManageRoomGroupPage<?> manageRoomGroupPage = new ManageRoomGroupPage<>(session);
+        MmDashboardApi<?> mmDashboardApi = new MmDashboardApi<>(session);
+
+        String vendorName = param.get("vendorName");
+        String vendorExternalId = param.get("vendorExternalId");
+        String roomGroupName = param.get("roomGroupName");
+        String username = param.get("username");
+        String password = param.get("password");
+
+        step("Resolve hotelId via BE (skips Hotel Library UI search flow)");
+        String hotelId = mmDashboardApi.getHotelIdByVendor(vendorName, vendorExternalId);
+
+        step("User log in to Panel dashboard and open Manage Room Group page directly");
+        memberLoginPage.gotoMemberLoginPage();
+        memberLoginPage.adminLogin(username, password);
+        loginMemberAdmin.gotoHome();
+        manageRoomGroupPage.openManageRoomGroupByHotelId(hotelId);
+        Assertion.assertThat("Manage Room Group page is loaded", manageRoomGroupPage.isManageRoomGroupPageLoaded(), is(true));
+
+        step("Open the target room group in the left sidebar so its card is rendered in the main content");
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+
+        step("Baseline: reset the test RG to Unverified and put filter back to All");
+        manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupName);
+        manageRoomGroupPage.applyFilter(ManageRoomGroupPage.FilterOption.ALL);
+
+        step("Refresh page and re-open the target room group in the sidebar (refresh clears the selection)");
+        manageRoomGroupPage.refreshPage();
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+
+        try {
+            step("TC17 / TC18 — Row-level indicators toggle correctly on a partial verify");
+            manageRoomGroupPage.clickEditVerification(roomGroupName);
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 1);
+            manageRoomGroupPage.clickVerify();
+            manageRoomGroupPage.confirmVerify();
+            Assertion.assertThat("\"Successfully verified\" snackbar appeared", manageRoomGroupPage.isVerifySuccessSnackbarAppeared(), is(true));
+            manageRoomGroupPage.refreshPage();
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+            Assertion.assertThat("Row 1 shows green (verified) indicator after partial verify", manageRoomGroupPage.isNthRoomVerified(roomGroupName, 1), is(true));
+            Assertion.assertThat("Row 2 still shows grey (unverified) indicator", manageRoomGroupPage.isNthRoomUnverified(roomGroupName, 2), is(true));
+            Assertion.assertThat("TC19 — RG-level \"Verified\" badge is NOT shown in mixed state", manageRoomGroupPage.isRoomGroupVerified(roomGroupName), is(false));
+
+            step("TC22 — \"Verified rooms\" filter keeps the test RG visible (has ≥1 verified room)");
+            manageRoomGroupPage.applyFilter(ManageRoomGroupPage.FilterOption.VERIFIED);
+            Assertion.assertThat("Test RG is present after applying \"Verified rooms\" filter", manageRoomGroupPage.isRoomGroupDisplayedInList(roomGroupName), is(true));
+
+            step("TC23 — \"Unverified rooms\" filter also keeps the test RG visible (still has ≥1 unverified room)");
+            manageRoomGroupPage.applyFilter(ManageRoomGroupPage.FilterOption.UNVERIFIED);
+            Assertion.assertThat("Test RG is present after applying \"Unverified rooms\" filter", manageRoomGroupPage.isRoomGroupDisplayedInList(roomGroupName), is(true));
+
+            step("TC25 — \"Group with rooms\" filter keeps the (non-empty) test RG visible");
+            manageRoomGroupPage.applyFilter(ManageRoomGroupPage.FilterOption.WITH_ROOMS);
+            Assertion.assertThat("Test RG is present after applying \"Group with rooms\" filter", manageRoomGroupPage.isRoomGroupDisplayedInList(roomGroupName), is(true));
+
+            step("Reset filter to All and confirm the RG is still listed");
+            manageRoomGroupPage.applyFilter(ManageRoomGroupPage.FilterOption.ALL);
+            Assertion.assertThat("Test RG is present after resetting filter to All", manageRoomGroupPage.isRoomGroupDisplayedInList(roomGroupName), is(true));
+        } finally {
+            step("Cleanup: reset filter to All, re-open the target RG in the sidebar, and reset every room back to Unverified");
+            try { manageRoomGroupPage.applyFilter(ManageRoomGroupPage.FilterOption.ALL); } catch (Exception ignored) { }
+            try { manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName); } catch (Exception ignored) { /* best-effort cleanup */ }
+            manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupName);
+        }
+    }
+
+    /** F3 — Action bar button-display state machine. */
+    @Author(names = {"Raihan"})
+    @Module(name = "ManageRoomGroup")
+    @Tribe(name = "Supply")
+    @Vertical(name = "Accommodation")
+    @Test
+    public void testButtonDisplayStateMachine() {
+        Map<String, String> param = getParam("testButtonDisplayStateMachine");
+        BaseTest.paramsThreadLocal.set(param);
+
+        Session<?> session = BaseTest.sessionThreadLocal.get();
+        MemberLoginPage<?> memberLoginPage = new MemberLoginPage<>(session);
+        LoginMemberAdmin<?> loginMemberAdmin = new LoginMemberAdmin<>(session);
+        ManageRoomGroupPage<?> manageRoomGroupPage = new ManageRoomGroupPage<>(session);
+        MmDashboardApi<?> mmDashboardApi = new MmDashboardApi<>(session);
+
+        String vendorName = param.get("vendorName");
+        String vendorExternalId = param.get("vendorExternalId");
+        String roomGroupName = param.get("roomGroupName");
+        String username = param.get("username");
+        String password = param.get("password");
+
+        step("Resolve hotelId via BE (skips Hotel Library UI search flow)");
+        String hotelId = mmDashboardApi.getHotelIdByVendor(vendorName, vendorExternalId);
+
+        step("User log in to Panel dashboard and open Manage Room Group page directly");
+        memberLoginPage.gotoMemberLoginPage();
+        memberLoginPage.adminLogin(username, password);
+        loginMemberAdmin.gotoHome();
+        manageRoomGroupPage.openManageRoomGroupByHotelId(hotelId);
+        Assertion.assertThat("Manage Room Group page is loaded", manageRoomGroupPage.isManageRoomGroupPageLoaded(), is(true));
+
+        step("Open the target room group in the left sidebar so its card is rendered in the main content");
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+
+        step("Baseline: unverify all rooms in the test RG");
+        manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupName);
+        int rowCount = manageRoomGroupPage.getRoomRowCountInGroup(roomGroupName);
+        Assertion.assertThat("Test RG has ≥2 rows to build a mixed state", rowCount, is(greaterThanOrEqualTo(2)));
+
+        try {
+            step("Seed: verify row 1 only so the RG ends up with 1 verified + N-1 unverified rooms");
+            manageRoomGroupPage.clickEditVerification(roomGroupName);
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 1);
+            manageRoomGroupPage.clickVerify();
+            manageRoomGroupPage.confirmVerify();
+
+            step("TC13 — With 0 rows selected, Verify and Unverify are both disabled");
+            manageRoomGroupPage.clickEditVerification(roomGroupName);
+            Assertion.assertThat("Selection counter is 0 on entering mode", manageRoomGroupPage.getSelectedCount(), is(0));
+            Assertion.assertThat("Verify button is disabled with 0 selection", manageRoomGroupPage.isVerifyButtonEnabled(), is(false));
+            Assertion.assertThat("Unverify button is disabled with 0 selection", manageRoomGroupPage.isUnverifyButtonEnabled(), is(false));
+
+            step("TC10 — Selecting only an unverified row enables Verify and disables Unverify");
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 2);
+            Assertion.assertThat("Verify button is enabled for all-unverified selection", manageRoomGroupPage.isVerifyButtonEnabled(), is(true));
+            Assertion.assertThat("Unverify button is disabled for all-unverified selection", manageRoomGroupPage.isUnverifyButtonEnabled(), is(false));
+
+            step("TC12 — Adding the verified row 1 to the selection enables both buttons (mixed state)");
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 1);
+            Assertion.assertThat("Verify button is enabled for mixed selection", manageRoomGroupPage.isVerifyButtonEnabled(), is(true));
+            Assertion.assertThat("Unverify button is enabled for mixed selection", manageRoomGroupPage.isUnverifyButtonEnabled(), is(true));
+
+            step("TC11 — Deselecting the unverified row leaves only the verified row → Unverify enabled, Verify disabled");
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 2);
+            Assertion.assertThat("Verify button is disabled for all-verified selection", manageRoomGroupPage.isVerifyButtonEnabled(), is(false));
+            Assertion.assertThat("Unverify button is enabled for all-verified selection", manageRoomGroupPage.isUnverifyButtonEnabled(), is(true));
+
+            manageRoomGroupPage.cancelVerification();
+        } finally {
+            step("Cleanup: re-open the target RG in the sidebar and reset every room in the test RG to Unverified");
+            try { manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName); } catch (Exception ignored) { /* best-effort cleanup */ }
+            manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupName);
+        }
+    }
+
+    /** F4 — Mixed selection click-through: user opens Verify, cancels, then Unverify, then confirms. */
+    @Author(names = {"Raihan"})
+    @Module(name = "ManageRoomGroup")
+    @Tribe(name = "Supply")
+    @Vertical(name = "Accommodation")
+    @Test
+    public void testMixedSelectionClickThroughFlow() {
+        Map<String, String> param = getParam("testMixedSelectionClickThroughFlow");
+        BaseTest.paramsThreadLocal.set(param);
+
+        Session<?> session = BaseTest.sessionThreadLocal.get();
+        MemberLoginPage<?> memberLoginPage = new MemberLoginPage<>(session);
+        LoginMemberAdmin<?> loginMemberAdmin = new LoginMemberAdmin<>(session);
+        ManageRoomGroupPage<?> manageRoomGroupPage = new ManageRoomGroupPage<>(session);
+        MmDashboardApi<?> mmDashboardApi = new MmDashboardApi<>(session);
+
+        String vendorName = param.get("vendorName");
+        String vendorExternalId = param.get("vendorExternalId");
+        String roomGroupName = param.get("roomGroupName");
+        String username = param.get("username");
+        String password = param.get("password");
+
+        step("Resolve hotelId via BE (skips Hotel Library UI search flow)");
+        String hotelId = mmDashboardApi.getHotelIdByVendor(vendorName, vendorExternalId);
+
+        step("User log in to Panel dashboard and open Manage Room Group page directly");
+        memberLoginPage.gotoMemberLoginPage();
+        memberLoginPage.adminLogin(username, password);
+        loginMemberAdmin.gotoHome();
+        manageRoomGroupPage.openManageRoomGroupByHotelId(hotelId);
+        Assertion.assertThat("Manage Room Group page is loaded", manageRoomGroupPage.isManageRoomGroupPageLoaded(), is(true));
+
+        step("Open the target room group in the left sidebar so its card is rendered in the main content");
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+
+        step("Baseline: unverify all rooms, then verify only row 1 so we can build a mixed selection");
+        manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupName);
+        int rowCount = manageRoomGroupPage.getRoomRowCountInGroup(roomGroupName);
+        Assertion.assertThat("Test RG has ≥2 rows for mixed-selection scenarios", rowCount, is(greaterThanOrEqualTo(2)));
+        manageRoomGroupPage.clickEditVerification(roomGroupName);
+        manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 1);
+        manageRoomGroupPage.clickVerify();
+        manageRoomGroupPage.confirmVerify();
+        manageRoomGroupPage.refreshPage();
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+        Assertion.assertThat("Row 1 is now verified after seed", manageRoomGroupPage.isNthRoomVerified(roomGroupName, 1), is(true));
+
+        try {
+            step("TC05 / TC06 — Open Verify modal on a mixed selection then Cancel; nothing changes");
+            manageRoomGroupPage.clickEditVerification(roomGroupName);
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 1);
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 2);
+            Assertion.assertThat("2 rooms are selected (mixed)", manageRoomGroupPage.getSelectedCount(), is(2));
+            manageRoomGroupPage.clickVerify();
+            Assertion.assertThat("Verify confirm modal appears on mixed selection Verify", manageRoomGroupPage.isVerifyConfirmModalDisplayed(), is(true));
+            manageRoomGroupPage.cancelVerifyConfirmation();
+            Assertion.assertThat("Row 1 (verified pre-cancel) is still verified", manageRoomGroupPage.isNthRoomVerified(roomGroupName, 1), is(true));
+            Assertion.assertThat("Row 2 (unverified pre-cancel) is still unverified", manageRoomGroupPage.isNthRoomUnverified(roomGroupName, 2), is(true));
+
+            step("TC08 — On the same mixed selection, click Unverify → confirm; only row 1 flips to unverified");
+            if (manageRoomGroupPage.getSelectedCount() != 2) {
+                manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 1);
+                manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupName, 2);
+            }
+            manageRoomGroupPage.clickUnverify();
+            Assertion.assertThat("Unverify confirm modal appears", manageRoomGroupPage.isUnverifyConfirmModalDisplayed(), is(true));
+            manageRoomGroupPage.confirmUnverify();
+            Assertion.assertThat("\"Successfully unverified\" snackbar appeared", manageRoomGroupPage.isUnverifySuccessSnackbarAppeared(), is(true));
+            manageRoomGroupPage.refreshPage();
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName);
+            Assertion.assertThat("Row 1 is now unverified after mixed-unverify", manageRoomGroupPage.isNthRoomUnverified(roomGroupName, 1), is(true));
+            Assertion.assertThat("Row 2 remains unverified (was already so)", manageRoomGroupPage.isNthRoomUnverified(roomGroupName, 2), is(true));
+        } finally {
+            step("Cleanup: re-open the target RG in the sidebar and reset every room in the test RG to Unverified");
+            try { manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupName); } catch (Exception ignored) { /* best-effort cleanup */ }
+            manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupName);
+        }
+    }
+
+    /** F5 — Room Group source-tag lifecycle. */
+    @Author(names = {"Raihan","Riya Bajpai"})
+    @Module(name = "ManageRoomGroup")
+    @Tribe(name = "Supply")
+    @Vertical(name = "Accommodation")
+    @Test
+    public void testUserSourceTagLifecycle() {
+        Map<String, String> param = getParam("testUserSourceTagLifecycle");
+        BaseTest.paramsThreadLocal.set(param);
+
+        Session<?> session = BaseTest.sessionThreadLocal.get();
+        MemberLoginPage<?> memberLoginPage = new MemberLoginPage<>(session);
+        LoginMemberAdmin<?> loginMemberAdmin = new LoginMemberAdmin<>(session);
+        ManageRoomGroupPage<?> manageRoomGroupPage = new ManageRoomGroupPage<>(session);
+        MmDashboardApi<?> mmDashboardApi = new MmDashboardApi<>(session);
+
+        String vendorName = param.get("vendorName");
+        String vendorExternalId = param.get("vendorExternalId");
+        String roomGroupNameA = param.get("roomGroupNameA");
+        String roomGroupNameB = param.get("roomGroupNameB");
+        String username = param.get("username");
+        String password = param.get("password");
+
+        step("Resolve hotelId via BE");
+        String hotelId = mmDashboardApi.getHotelIdByVendor(vendorName, vendorExternalId);
+
+        step("Discover seed RGs via BE (fallback: param roomGroupNameA / roomGroupNameB)");
+        String discoveredCetusRg = mmDashboardApi.findFirstRoomGroupNameWithTag(hotelId, "cetus");
+        if (!discoveredCetusRg.isBlank()) {
+            step("Using dynamically-discovered Cetus RG for roomGroupNameA: '" + discoveredCetusRg + "' (param fallback was '" + roomGroupNameA + "')");
+            roomGroupNameA = discoveredCetusRg;
+        } else {
+            step("BE returned no clean Cetus RG; falling back to param roomGroupNameA='" + roomGroupNameA + "' (test may fail if this RG has already been touched)");
+        }
+        String discoveredEmptyRg = mmDashboardApi.findFirstEmptyRoomGroupName(hotelId);
+        if (!discoveredEmptyRg.isBlank()) {
+            step("Using dynamically-discovered empty RG for roomGroupNameB: '" + discoveredEmptyRg + "' (param fallback was '" + roomGroupNameB + "')");
+            roomGroupNameB = discoveredEmptyRg;
+        } else {
+            step("BE returned no empty RG; falling back to param roomGroupNameB='" + roomGroupNameB + "' (test may fail if this RG is no longer empty)");
+        }
+
+        step("User log in to Panel dashboard and open Manage Room Group page directly");
+        memberLoginPage.gotoMemberLoginPage();
+        memberLoginPage.adminLogin(username, password);
+        loginMemberAdmin.gotoHome();
+        manageRoomGroupPage.openManageRoomGroupByHotelId(hotelId);
+        Assertion.assertThat("Manage Room Group page is loaded", manageRoomGroupPage.isManageRoomGroupPageLoaded(), is(true));
+
+        step("Baseline: reset every room in the source RG to Unverified so the source-tag legs start from a known state");
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameA);
+        manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupNameA);
+        int rowCount = manageRoomGroupPage.getRoomRowCountInGroup(roomGroupNameA);
+        Assertion.assertThat("Source RG has \u22651 room to drive the verify legs", rowCount, is(greaterThanOrEqualTo(1)));
+
+        String roomGroupAId = mmDashboardApi.getRoomGroupIdByName(hotelId, roomGroupNameA);
+        step("Source RG id captured before Verify: '" + roomGroupAId + "'");
+
+        step("Source-tag leg 1 \u2014 first user-initiated Verify should flip the tag to \"user-cetus\"");
+        manageRoomGroupPage.clickEditVerification(roomGroupNameA);
+        manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupNameA, 1);
+        manageRoomGroupPage.clickVerify();
+        manageRoomGroupPage.confirmVerify();
+        Assertion.assertThat("\"Successfully verified\" snackbar appeared", manageRoomGroupPage.isVerifySuccessSnackbarAppeared(), is(true));
+        String tagAfterFirstVerify = mmDashboardApi.getRoomGroupTag(hotelId, roomGroupAId, roomGroupNameA);
+        Assertion.assertThat("Tag flips to \"user-cetus\" after the first user-initiated Verify",
+                tagAfterFirstVerify, is("user-cetus"));
+
+        step("Source-tag leg 2 \u2014 Unverify the same row; the tag stays \"user-cetus\" (Cetus origin is kept; the UI tooltip shows \"User based\")");
+        manageRoomGroupPage.refreshPage();
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameA);
+        manageRoomGroupPage.clickEditVerification(roomGroupNameA);
+        manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupNameA, 1);
+        manageRoomGroupPage.clickUnverify();
+        manageRoomGroupPage.confirmUnverify();
+        Assertion.assertThat("\"Successfully unverified\" snackbar appeared", manageRoomGroupPage.isUnverifySuccessSnackbarAppeared(), is(true));
+        String tagAfterUnverify = mmDashboardApi.getRoomGroupTag(hotelId, roomGroupAId, roomGroupNameA);
+        Assertion.assertThat("Tag stays \"user-cetus\" after Unverify (Cetus origin is kept once a user has touched the group)",
+                tagAfterUnverify, is("user-cetus"));
+
+        step("Source-tag leg 3 \u2014 repeat Verify \u2192 Unverify cycle; the tag must still remain \"user-cetus\"");
+        manageRoomGroupPage.refreshPage();
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameA);
+        manageRoomGroupPage.clickEditVerification(roomGroupNameA);
+        manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupNameA, 1);
+        manageRoomGroupPage.clickVerify();
+        manageRoomGroupPage.confirmVerify();
+        Assertion.assertThat("\"Successfully verified\" snackbar appeared", manageRoomGroupPage.isVerifySuccessSnackbarAppeared(), is(true));
+        manageRoomGroupPage.refreshPage();
+        manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameA);
+        manageRoomGroupPage.clickEditVerification(roomGroupNameA);
+        manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupNameA, 1);
+        manageRoomGroupPage.clickUnverify();
+        manageRoomGroupPage.confirmUnverify();
+        Assertion.assertThat("\"Successfully unverified\" snackbar appeared", manageRoomGroupPage.isUnverifySuccessSnackbarAppeared(), is(true));
+        String tagAfterRepeatCycle = mmDashboardApi.getRoomGroupTag(hotelId, roomGroupAId, roomGroupNameA);
+        Assertion.assertThat("Tag stays \"user-cetus\" across repeated Verify/Unverify cycles",
+                tagAfterRepeatCycle, is("user-cetus"));
+    }
+
+    /** F6 — Cross-RG selection scope: FE must prevent selecting rooms across two RGs in one Verify/Unverify. */
+    @Author(names = {"Raihan"})
+    @Module(name = "ManageRoomGroup")
+    @Tribe(name = "Supply")
+    @Vertical(name = "Accommodation")
+    @Test
+    public void testCrossRgSelectionScopeFlow() {
+        Map<String, String> param = getParam("testCrossRgSelectionScopeFlow");
+        BaseTest.paramsThreadLocal.set(param);
+
+        Session<?> session = BaseTest.sessionThreadLocal.get();
+        MemberLoginPage<?> memberLoginPage = new MemberLoginPage<>(session);
+        LoginMemberAdmin<?> loginMemberAdmin = new LoginMemberAdmin<>(session);
+        ManageRoomGroupPage<?> manageRoomGroupPage = new ManageRoomGroupPage<>(session);
+        MmDashboardApi<?> mmDashboardApi = new MmDashboardApi<>(session);
+
+        String vendorName = param.get("vendorName");
+        String vendorExternalId = param.get("vendorExternalId");
+        String roomGroupNameA = param.get("roomGroupNameA");
+        String roomGroupNameB = param.get("roomGroupNameB");
+        String username = param.get("username");
+        String password = param.get("password");
+
+        step("Resolve hotelId via BE");
+        String hotelId = mmDashboardApi.getHotelIdByVendor(vendorName, vendorExternalId);
+
+        step("User log in to Panel dashboard and open Manage Room Group page directly");
+        memberLoginPage.gotoMemberLoginPage();
+        memberLoginPage.adminLogin(username, password);
+        loginMemberAdmin.gotoHome();
+        manageRoomGroupPage.openManageRoomGroupByHotelId(hotelId);
+        Assertion.assertThat("Manage Room Group page is loaded", manageRoomGroupPage.isManageRoomGroupPageLoaded(), is(true));
+
+        try {
+            step("Baseline: reset both RGs to fully-unverified so the cross-RG probe starts from a known state");
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameA);
+            manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupNameA);
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameB);
+            manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupNameB);
+
+            step("Enter Edit verification mode on RG A and tick row 1 \u2014 selection counter should read 1");
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameA);
+            manageRoomGroupPage.clickEditVerification(roomGroupNameA);
+            manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupNameA, 1);
+            Assertion.assertThat("Selection counter reads 1 after ticking a room in RG A", manageRoomGroupPage.getSelectedCount(), is(1));
+
+            step("Cross-RG probe \u2014 attempt to switch to RG B while RG A is in edit mode; the FE enforcement pattern is unknown so we observe what happens");
+            boolean rgBSelectAttemptSucceeded;
+            try {
+                manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameB);
+                rgBSelectAttemptSucceeded = true;
+            } catch (Exception e) {
+                rgBSelectAttemptSucceeded = false;
+            }
+            boolean rgACardStillRendered = manageRoomGroupPage.isRoomGroupCardRendered(roomGroupNameA);
+            boolean rgBCardRenderedAfterSwitch = manageRoomGroupPage.isRoomGroupCardRendered(roomGroupNameB);
+            boolean rgBCrossRgTickAttempted = manageRoomGroupPage.attemptCheckNthRoomVerifyCheckboxInGroup(roomGroupNameB, 1);
+
+            step(String.format("[FE-probe] Sidebar switch to RG B while A in edit mode: succeeded=%s | after-switch RG A card rendered=%s | after-switch RG B card rendered=%s | cross-RG checkbox click accepted=%s",
+                    rgBSelectAttemptSucceeded, rgACardStillRendered, rgBCardRenderedAfterSwitch, rgBCrossRgTickAttempted));
+
+            step("Return focus to RG A; if A's edit mode was cancelled by the switch (auto-cancel enforcement) re-enter and re-tick row 1");
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameA);
+            if (manageRoomGroupPage.isEditVerificationButtonPresentForGroup(roomGroupNameA)) {
+                manageRoomGroupPage.clickEditVerification(roomGroupNameA);
+                manageRoomGroupPage.checkNthRoomVerifyCheckbox(roomGroupNameA, 1);
+            }
+            Assertion.assertThat("Selection counter on RG A still reads 1 before confirming Verify",
+                    manageRoomGroupPage.getSelectedCount(), is(1));
+
+            step("Complete the Verify on RG A and confirm the modal");
+            manageRoomGroupPage.clickVerify();
+            manageRoomGroupPage.confirmVerify();
+            Assertion.assertThat("\"Successfully verified\" snackbar appeared", manageRoomGroupPage.isVerifySuccessSnackbarAppeared(), is(true));
+
+            step("Refresh and inspect both RGs \u2014 invariant: only RG A row 1 is verified; every RG B row is unverified");
+            manageRoomGroupPage.refreshPage();
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameA);
+            Assertion.assertThat("RG A row 1 is verified after the confirmed action",
+                    manageRoomGroupPage.isNthRoomVerified(roomGroupNameA, 1), is(true));
+
+            manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameB);
+            int rgBRowCount = manageRoomGroupPage.getRoomRowCountInGroup(roomGroupNameB);
+            Assertion.assertThat("RG B has \u22651 row to inspect for the invariant check",
+                    rgBRowCount, is(greaterThanOrEqualTo(1)));
+            for (int i = 1; i <= rgBRowCount; i++) {
+                Assertion.assertThat(String.format("RG B row %d remains unverified after the cross-RG probe (invariant)", i),
+                        manageRoomGroupPage.isNthRoomUnverified(roomGroupNameB, i), is(true));
+            }
+        } finally {
+            step("Cleanup: re-open both RGs in turn and reset every room to Unverified");
+            try { manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameA); manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupNameA); } catch (Exception ignored) { /* best-effort cleanup */ }
+            try { manageRoomGroupPage.selectRoomGroupInSidebarByExactName(roomGroupNameB); manageRoomGroupPage.resetAllRoomsToUnverifiedInGroup(roomGroupNameB); } catch (Exception ignored) { /* best-effort cleanup */ }
+        }
+    }
+}

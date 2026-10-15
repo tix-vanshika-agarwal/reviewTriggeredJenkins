@@ -1,0 +1,41 @@
+{
+  "additionalFacilities": [
+  ],
+  "additionalZones": [
+  ],
+  "carRegionalId": "?",
+  "contact": {
+    "areaCode": "+62",
+    "phone": "?",
+    "fullName": "?",
+    "title": "?",
+    "email": "?"
+  },
+  "currency": "IDR",
+  "driverOption": "?",
+  "isApplyAllIn": false,
+  "isEvaluatePickupDropoff": true,
+  "isEvaluatePricing": true,
+  "passengers": {
+    "areaCode": "+62",
+    "phone": "?",
+    "fullName": "?",
+    "title": "?",
+    "email": "?"
+  },
+  "pickupTime": "?",
+  "qty": 1,
+  "startDate": "?",
+  "totalDays": 1,
+  "type": "?",
+  "zones": {
+    "dropOff": {
+      "address": "?",
+      "id": "?"
+    },
+    "pickup": {
+      "address": "?",
+      "id": "?"
+    }
+  }
+}

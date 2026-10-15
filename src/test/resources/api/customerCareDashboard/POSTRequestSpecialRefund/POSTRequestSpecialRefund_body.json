@@ -1,0 +1,15 @@
+[
+  {
+    "operationName": "submitMiddlewareForm",
+    "variables": {
+      "orderId": "?",
+      "orderDetailId": "?",
+      "amountFromVendor": "?",
+      "items": [],
+      "reasonId": "customer_request",
+      "remark": "Automation Testing",
+      "isForceToBankTransfer": false
+    },
+    "query": "mutation submitMiddlewareForm($orderId: ID, $orderDetailId: Int, $amountFromVendor: JsonType, $items: [Int], $reasonId: String, $receiver: RefundMiddlewareFormReceiver, $remark: String, $isForceToBankTransfer: Boolean) {\n  submitRefundMiddlewareForm(orderId: $orderId, orderDetailId: $orderDetailId, amountFromVendor: $amountFromVendor, items: $items, reasonId: $reasonId, receiver: $receiver, remark: $remark, isForceToBankTransfer: $isForceToBankTransfer)\n}\n"
+  }
+]

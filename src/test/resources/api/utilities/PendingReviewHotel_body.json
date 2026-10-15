@@ -1,0 +1,30 @@
+{
+  "accountId": "?",
+  "userFullName": "?",
+  "lang": "en",
+  "productType": "TIXHOTEL",
+  "orderId": "?",
+  "orderDetailId": "?",
+  "inventoryId": "aston-balikpapan-hotel-and-residence-108001534490295556",
+  "inventoryName": "?",
+  "instantNotification": false,
+  "totalItems": 1,
+  "imageUrl": "https://yt3.googleusercontent.com/bxivQ9wtSVgNk5cbNBeN8tH-iIAkGJdd_67XThGdlR8b1Y8gaZ3A_2ar7HEBVZtWsvVw4SHJ=s900-c-k-c0x00ffffff-no-rj",
+  "journeyStartDate": "T11:25:17.239Z",
+  "journeyEndDate": "T11:25:17.239Z",
+  "area": "balikpapan-timur-108001534490287592",
+  "city": "balikpapan-108001534490287589",
+  "region": "east-kalimantan-108001534490287550",
+  "country": "indonesia",
+  "additionalInfo": {
+    "totalItem": 1,
+    "imageUrl": "https://yt3.googleusercontent.com/bxivQ9wtSVgNk5cbNBeN8tH-iIAkGJdd_67XThGdlR8b1Y8gaZ3A_2ar7HEBVZtWsvVw4SHJ=s900-c-k-c0x00ffffff-no-rj",
+    "totalRoom": 1,
+    "pageUrl": "",
+    "starRating": 5
+  },
+  "showDate": "?",
+  "expiryDate": "?",
+  "isSubmitted": false,
+  "username": "?"
+}

@@ -1,0 +1,10 @@
+{
+    "orderHash": "?",
+    "referenceId": "?",
+    "paymentKey": "CORPORATE_BILLING",
+    "paymentData": {
+        "corporateId": "?",
+        "employeeId": "?",
+        "orderNotes": "test payment"
+    }
+}

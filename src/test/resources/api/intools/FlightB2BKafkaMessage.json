@@ -1,0 +1,40 @@
+{
+  "resellerName": "Partner Flight PreProd",
+  "resellerId": "35001352",
+  "resellerCustomerEmail": "-",
+  "profitType": "SELL",
+  "orderId": 1900490386,
+  "resellerOrderId": "",
+  "paymentDate": "2025-06-16T04:54:27Z",
+  "resellerPreferredCurrency": "IDR",
+  "paymentStatusFromDisbursement": "",
+  "settlementDate": "2025-06-16T11:55:34.018221609+07:00",
+  "details": [
+    {
+      "orderDetailId": 1900600364,
+      "carrierType": "-",
+      "supplier": "tiketcomCitilinkV3",
+      "markUpPercentage": 1,
+      "markUpValue": 1000,
+      "baseFare": 1222600,
+      "markUpValueFromMarkUpPercentage": 2,
+      "totalMarkUpValue": 2000,
+      "resellerCommissionPercentage": 3,
+      "commissionValue": 146712,
+      "tiketCommissionValue": 23120,
+      "publishedFareToReseller": 1589736,
+      "resellerSubsidyCampaignPercentage": 4,
+      "resellerSubsidyCampaignValue": 3000,
+      "customerFinalPriceInVendorPreferredCurrency": 1589736,
+      "settlementAmountInResellerPreferredCurrency": 1443024,
+      "baggageMarkupFare": 1000,
+      "mealsMarkupFare": 2000,
+      "seatsMarkupFare": 3000,
+      "baggageFare": 500,
+      "mealsFare": 1000,
+      "seatsFare": 2000,
+      "convenienceFee": 0,
+      "airlineCommission": 23120
+    }
+  ]
+}

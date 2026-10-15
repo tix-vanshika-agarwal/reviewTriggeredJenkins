@@ -1,0 +1,8 @@
+{
+  "config": [
+    {
+      "name": "TRAVEL_POLICY_COMPLY_SEARCH",
+      "value": false
+    }
+  ]
+}

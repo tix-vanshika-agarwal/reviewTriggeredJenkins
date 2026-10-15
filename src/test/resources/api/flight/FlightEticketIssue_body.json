@@ -1,0 +1,20 @@
+{
+  "paxRequest": [
+    {
+      "name": "?",
+      "originalPaxName": null,
+      "ticketNumber": "126-2123147319",
+      "ticketSource": null,
+      "addons": null,
+      "pricingDetails": null,
+      "originalPricingDetails": null,
+      "pqrNumber": 0,
+      "paxNumber": "?",
+      "type": "adult",
+      "title": "?",
+      "fullNameWithTitle": "?"
+    }
+  ],
+  "bookingCodeSabres": [ ],
+  "orderId": "?"
+}

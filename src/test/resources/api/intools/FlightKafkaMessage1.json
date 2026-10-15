@@ -1,0 +1,11 @@
+{
+  "orderID": 1900410013,
+  "orderType": "flight",
+  "timestamp": 1740563561759,
+  "items": [
+    {
+      "itemID": 1900080032,
+      "additionalInfo": "{\"orderId\":\"1900410013\",\"orderDetailId\":\"1900080032\",\"statusOrder\":\"SUCCESS\",\"distributionType\":\"pkfare\",\"bookingCode\":\"IE3QAO\",\"referenceNumber\":\"IE3QAP\",\"paymentAmount\":0,\"ticketType\":null,\"pdfBase64\":null,\"sessionId\":null,\"issuedTypeRequest\":\"ISSUANCE\",\"paxes\":[{\"name\":\"ms Rahayu Purnamardianti\",\"ticketNumber\":\"72388283833\",\"paxNumber\":\"10000\"}],\"bookingCodeSabre\":null,\"entityId\":\"ID\",\"markupValue\":15000,\"markupTotal\":16000,\"commissionPercentage\":2,\"commissionPercentageValue\":17000,\"commissionValue\":18000,\"commissionTotal\":19000,\"basicPrice\":712641,\"baggageFare\":367530.97,\"mealsFare\":357530.98,\"seatsFare\":347530.99,\"medicalsFare\":0,\"storeId\":\"TIKETCOM\",\"channelId\":\"DESKTOP\",\"resellerId\":\"0\",\"resellerType\":\"\",\"baggageMarkupFare\":400000.99,\"mealsMarkupFare\":399999.98,\"medicalsMarkupFare\":0,\"seatsMarkupFare\":398888.97,\"paymentDetails\":{\"totalBaseFare\":332859.67000000004,\"baseFares\":{\"adult\":332859.67000000004,\"child\":0,\"infant\":0},\"totalNta\":345110.67000000004,\"totalCommission\":0,\"totalOtherFare\":379781.32999999996},\"paymentDetailsChanged\":{\"totalBaseFare\":332859.67000000004,\"baseFares\":{\"adult\":332859.67000000004,\"child\":0,\"infant\":0},\"totalNta\":712641,\"totalCommission\":0,\"totalOtherFare\":379781.32999999996,\"remarkReason\":null},\"corporate\":null,\"vi\":false,\"insuranceTransactionDetailId\":[],\"metasearchRequestId\":null,\"requireGetTicket\":false,\"domesticIndonesia\":false,\"isRequireGetTicket\":false,\"isDomesticIndonesia\":false}"
+    }
+  ]
+}

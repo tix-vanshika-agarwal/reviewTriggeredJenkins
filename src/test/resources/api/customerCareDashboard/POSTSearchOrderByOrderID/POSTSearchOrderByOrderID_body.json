@@ -1,0 +1,22 @@
+[
+  {
+    "operationName": "SearchOrderQuery",
+    "variables": {
+      "orderType": null,
+      "orderId": "?",
+      "email": null,
+      "bookingCode": null,
+      "phoneNumber": null,
+      "dateTransactionStart": null,
+      "dateTransactionEnd": null,
+      "orderStatus": null,
+      "dateScheduledStart": null,
+      "dateScheduledEnd": null,
+      "page": "1",
+      "size": 10,
+      "searchUsingPaymentMethod": false,
+      "searchType": "orderId"
+    },
+    "query": "query SearchOrderQuery($orderType: [String], $orderId: Int, $email: String, $bookingCode: String, $dateTransactionStart: String, $dateTransactionEnd: String, $orderStatus: [String], $paymentMethod: [String], $dateScheduledStart: String, $dateScheduledEnd: String, $page: Int, $size: Int, $bookingNumber: String, $phoneNumber: String, $searchUsingPaymentMethod: Boolean) {\n  searchOrder: getSearch(orderType: $orderType, orderId: $orderId, email: $email, bookingCode: $bookingCode, dateTransactionStart: $dateTransactionStart, dateTransactionEnd: $dateTransactionEnd, orderStatus: $orderStatus, paymentMethod: $paymentMethod, dateScheduledStart: $dateScheduledStart, dateScheduledEnd: $dateScheduledEnd, page: $page, size: $size, bookingNumber: $bookingNumber, phoneNumber: $phoneNumber, searchUsingPaymentMethod: $searchUsingPaymentMethod)\n}\n"
+  }
+]

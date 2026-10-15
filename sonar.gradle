@@ -1,0 +1,80 @@
+final existPath = { path ->
+    file(path).exists() ? path : null
+}
+
+final sonarSources = {
+    allAndroidSubModules.collect {
+        String sourcePath = "${it.projectDir}/src/main/java"
+        File file = new File(sourcePath)
+        file.exists() ? sourcePath : null
+    } - null
+}
+
+final sonarJavaBinaries = {
+    def prodClassFile = new File("${allAndroidSubModules.first().projectDir}/build/intermediates/javac/prodDebug/classes")
+    def flavourPath = prodClassFile.exists() ? "prodDebug" : "uatDebug"
+    allAndroidSubModules.collect {
+        String sourcePath = "${it.projectDir}/build/intermediates/javac/${flavourPath}/classes"
+        File file = new File(sourcePath)
+        file.exists() ? sourcePath : null
+    } - null
+}
+
+final sonarTestSources = {
+    coveredModules.collect { existPath("${it.projectDir}/src/test/java") } - null
+}
+
+final sonarCoverageExclusion = {
+    def exclusionList = fileFilter
+    coveredModules.forEach { module ->
+        def filters = module.ext.has('jacocoFilter') ? module.ext.jacocoFilter : []
+        filters.forEach { filePath ->
+            exclusionList.add("**/${module.name}/${filePath}")
+        }
+    }
+    excludedModules.forEach { moduleName ->
+        exclusionList.add("**/${moduleName}/**")
+    }
+    return exclusionList.unique()
+}
+
+def codeDuplicationExclusionList = [
+        '**/auth/login/view/LoginFragment.*',
+        '**/auth/register/view/RegisterFragment.*',
+        '**/auth/unm/model/SSOBlockingModel.*',
+]
+
+final localProps = loadLocalProperties()
+
+sonarqube {
+    properties {
+        property 'sonar.login', ''
+        property 'sonar.password', ''
+        property 'sonar.projectKey', 'tiketandroidtest'
+        property 'sonar.projectName', 'tiket-android-jacoco'
+        property 'sonar.test.inclusions', '**/*test*/**'
+        property 'sonar.exclusions', '**/*test*/**'
+        property 'sonar.host.url', 'https://sonar-server.tiket.com/'
+        property 'sonar.projectBaseDir', "${rootDir}"
+        property 'sonar.projectVersion', "${project.appVersionName}"
+        property 'sonar.sources', sonarSources()
+        property 'sonar.java.binaries', sonarJavaBinaries()
+        property 'sonar.tests', sonarTestSources()
+        property 'sonar.coverage.exclusions', sonarCoverageExclusion()
+        property 'sonar.coverage.jacoco.xmlReportPaths', "${rootBuildDir}/appium-report/report.xml"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.android.lint.report", "build/outputs/lint-results.xml"
+        property 'sonar.cpd.exclusions', codeDuplicationExclusionList
+
+        // Rule https://sonar-server.tiket.com/coding_rules?rule_key=kotlin%3AS1135&selected=kotlin%3AS1135 is ignored. As we decided its Intentional
+        property 'sonar.issue.ignore.multicriteria', "KS1135,JS1135"
+        property 'sonar.issue.ignore.multicriteria.KS1135.resourceKey', "**/*.kt"
+        property 'sonar.issue.ignore.multicriteria.KS1135.ruleKey', "kotlin:S1135"
+        // Rule https://sonar-server.tiket.com/coding_rules?rule_key=java%3AS1135&selected=kotlin%3AS1135 is ignored. As we decided its Intentional
+        property 'sonar.issue.ignore.multicriteria.JS1135.resourceKey', "**/*.java"
+        property 'sonar.issue.ignore.multicriteria.JS1135.ruleKey', "java:S1135"
+
+        property "sonar.branch.name", "release/4.89.0"
+
+    }
+}

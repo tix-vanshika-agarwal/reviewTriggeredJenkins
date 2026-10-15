@@ -1,0 +1,23 @@
+{
+  "accountId": "?",
+  "userFullName": "?",
+  "lang": "?",
+  "productType": "TODO",
+  "orderId": "?",
+  "orderDetailId": "?",
+  "inventoryId" : "5fa8c312753d51338abb97ce",
+  "inventoryName" : "Test product Regression Attraction",
+  "instantNotification": false,
+  "totalItems": 2,
+  "imageUrl": "https://s-gk.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/original/car-model/2020/12/22/6f403742-9265-4f3d-8edb-8b97d32869fa-1608622840735-ed510ebb885847f4d2c9aedfc1c0beed.jpg",
+  "journeyStartDate": "T11:25:17.239Z",
+  "journeyEndDate": "T11:25:17.239Z",
+  "area" : "JKS",
+  "city" : "JAKARTA SELATAN",
+  "region" : "JAKARTA",
+  "country" : "INDONESIA",
+  "showDate": "2022-11-06T00:10:13.960Z",
+  "expiryDate": "2025-06-28T08:07:13.959Z",
+  "isSubmitted": false,
+  "username": "?"
+}

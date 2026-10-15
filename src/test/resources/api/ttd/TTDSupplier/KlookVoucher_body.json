@@ -1,0 +1,16 @@
+{
+  "event_id": "string",
+  "event_time": 0,
+  "event_type": "string",
+  "meta": {
+    "agent_id": "string",
+    "agent_order_id": "?",
+    "order_id": "?",
+    "voucher_url": "https://sandbox.klktech.com/voucher-new/c14817ed-8663-437b-764b-70da5d409d63?lang=en_US",
+
+
+    "status": "confirmed",
+    "redemption_type": 0,
+    "file_type": 0
+  }
+}

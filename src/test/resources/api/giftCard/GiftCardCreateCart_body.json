@@ -1,0 +1,31 @@
+{
+  "passengers": [
+    {
+      "paxId": 1,
+      "profileId": "?",
+      "detail": {
+        "areaCode": "+62",
+        "emailAddress": "?",
+        "fullName": "?",
+        "phone": "?",
+        "title": "?"
+      }
+    }
+  ],
+  "inventories": [
+    {
+      "searchKey": "?",
+      "inventoryId": "?",
+      "vertical": "gift-card",
+      "bookingCount": {
+        "recipientCount": 1
+      },
+      "bookingItems": [
+        {
+          "paxId": 1,
+          "voucherAmount": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "orderID": 1900700372,
+  "orderType": "flight",
+  "timestamp": 1750350935301,
+  "items": [
+    {
+      "itemID": 1900180401,
+      "additionalInfo": "{\"orderId\":\"1900700372\",\"orderDetailId\":\"1900180401\",\"statusOrder\":\"SUCCESS\",\"distributionType\":\"citilink\",\"bookingCode\":\"DYK6JI\",\"referenceNumber\":\"DYK6JI\",\"paymentAmount\":0,\"ticketType\":null,\"pdfBase64\":null,\"sessionId\":null,\"issuedTypeRequest\":\"ISSUANCE\",\"paxes\":[{\"name\":\"mr Daffa Testing\",\"ticketNumber\":\"19007003722324\",\"paxNumber\":\"10000\"}],\"bookingCodeSabre\":null,\"entityId\":\"ID\",\"markupValue\":1000,\"markupTotal\":2000,\"commissionPercentage\":1,\"commissionPercentageValue\":3000,\"commissionValue\":24320,\"commissionTotal\":24320,\"basicPrice\":1589736,\"baggageFare\":4000,\"mealsFare\":5000,\"seatsFare\":6000,\"medicalsFare\":0,\"storeId\":\"TIKETCOM\",\"channelId\":\"DESKTOP\",\"resellerId\":\"0\",\"resellerType\":\"\",\"baggageMarkupFare\":7000,\"mealsMarkupFare\":8000,\"medicalsMarkupFare\":0,\"seatsMarkupFare\":9000,\"paymentDetails\":{\"totalBaseFare\":1216000,\"baseFares\":{\"adult\":1216000,\"child\":0,\"infant\":0},\"totalNta\":1565416,\"totalCommission\":24320,\"totalOtherFare\":373736},\"paymentDetailsChanged\":{\"totalBaseFare\":1216000,\"baseFares\":{\"adult\":1216000,\"child\":0,\"infant\":0},\"totalNta\":1565416,\"totalCommission\":24320,\"totalOtherFare\":373736,\"remarkReason\":null},\"corporate\":null,\"vi\":false,\"insuranceTransactionDetailId\":[],\"metasearchRequestId\":null,\"platform\":\"web\",\"itineraries\":[{\"schedules\":[{\"fareBasisCodes\":{\"adult\":null,\"child\":null,\"infant\":null}}]}],\"requireGetTicket\":false,\"domesticIndonesia\":true,\"isRequireGetTicket\":false,\"isDomesticIndonesia\":true}"
+    }
+  ]
+}

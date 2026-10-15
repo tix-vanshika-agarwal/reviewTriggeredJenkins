@@ -1,0 +1,74 @@
+{
+  "sysparIds": {
+    "gk": {
+      "vendorMapping": "67fe2a17b92b880001f46698",
+      "serviceConfig": "6750370bbb3c8c0001b3ed9c"
+    },
+    "preprod": {
+      "vendorMapping": "682ac6cc4d274e0001b55707",
+      "serviceConfig": "677f96d0fb670b0001aab8c5"
+    }
+  },
+  "vendorRoot": "agodaDirectVendorClientMappingConfig",
+  "serviceRoot": "commonVendorServiceConfig",
+  "vendorArray": [
+    {"vendor": "AGODA_V2"},
+    {"vendor": "BCOM"}
+  ],
+  "operations": [
+    "Avail",
+    "precheck",
+    "bookingDetails",
+    "bookinglist",
+    "revise",
+    "confirm",
+    "refund",
+    "refundpreconfirm"
+  ],
+  "criticalOperations": ["Avail", "precheck", "bookingDetails", "confirm"],
+  "sandboxUrls": [
+    "http://sandbox-affiliateapi.agoda.com/",
+    "https://sandbox-affiliateapisecure.agoda.com/"
+  ],
+  "wiremock": {
+    "gk": [
+      {
+        "host": "http://192.168.48.191:9000",
+        "mockApiId": "5gyx2",
+        "mappingId": "4dec25eb-fac7-4e05-93e5-490719af550c"
+      }
+    ],
+    "preprod": [
+      {
+        "host": "http://10.6.2.20:9000",
+        "mockApiId": "g1z86",
+        "mappingId": "6b748d5a-7d1f-4b3b-a83c-d51a7908e79c"
+      }
+    ]
+  },
+  "vendorV2Array": [
+    {
+      "vendor": "AGODA_V2",
+      "externalIds": [
+        "5198645",
+        "1637269",
+        "675525",
+        "3541400"
+      ],
+      "activeRoomDetails": null
+    },
+    {
+      "vendor": "BCOM",
+      "externalIds": [
+        "5198645"
+      ],
+      "activeRoomDetails": null
+    }
+  ],
+  "dateRange": "15-18",
+  "numberOfNights": 1,
+  "numberOfRooms": 1,
+  "numberOfAdults": 1,
+  "childrenAge": [],
+  "searchOnly": false
+}

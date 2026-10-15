@@ -1,0 +1,2 @@
+orderId,referenceId,transactionDate,timeTransaction,vaNumber,cardNumber,authCode,description,userCurrency,amount,reportCurrency,amountInReportCurrency,pgName,paymentMethod
+[ORDER_ID],123123,2024-07-11,,780011200674635,,,AUTOMATION INTOOLS DASHBOARD,IDR,[AMOUNT],,,VA_BCA_H2H,

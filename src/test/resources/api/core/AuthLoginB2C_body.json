@@ -1,0 +1,8 @@
+{
+  "adminType": "INTERNAL",
+  "b2BType": "AGENT",
+  "loginType": "PASSWORD",
+  "otp": "string",
+  "sessionV3": true,
+  "trxId": "string"
+}

@@ -1,0 +1,9 @@
+{
+  "orderId": "?",
+  "orderHash": "?",
+  "discountCode": "?",
+  "productType": "?",
+  "totalPrice": 0,
+  "currency": "?",
+  "paymentType": "?"
+}

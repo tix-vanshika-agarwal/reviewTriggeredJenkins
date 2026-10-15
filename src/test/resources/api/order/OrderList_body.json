@@ -1,0 +1,8 @@
+{
+  "orderFilterTypes": [
+    "ALL"
+  ],
+  "orderSort": "RECENTLY_PURCHASED",
+  "page": 0,
+  "size": 10
+}

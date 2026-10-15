@@ -1,0 +1,47 @@
+{
+  "contactPerson": {
+    "profileId": 0,
+    "title": "?",
+    "fullName": "?",
+    "email": "?",
+    "phone": "?",
+    "areaCode": "?",
+    "id": "",
+    "countryId": "?"
+  },
+  "insurances": [],
+  "insurancesCredential": [],
+  "hotel": [
+    {
+      "hotelId": "?",
+      "books": [
+        {
+          "cartId": "?",
+          "bookingAddOnRequests": [],
+          "childAges": [],
+          "rooms": [
+            {
+              "guestDetail": {
+                "profileId": 0,
+                "title": "?",
+                "fullName": "?",
+                "nationalityCode": "?"
+              },
+              "nights": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "crossSellingSource": null,
+  "traveller": null,
+  "previousOrderId": 0,
+  "b2bInterimPageData": {
+    "corporateInterimID": "?",
+    "corporatePaymentPreference": "",
+    "serviceFee": "?",
+    "serviceFeeType": "?",
+    "transactionalStatus": "?"
+  }
+}

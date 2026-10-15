@@ -1,0 +1,4 @@
+orderId,paymentId,referenceId,transactionDate,timeTransaction,vaNumber,cardNumber,authCode,description,userCurrency,amount,mdr,reportCurrency,amountInReportCurrency,mdrInReportCurrency,pgName,paymentMethod
+1900260637,1900260637-0,4445555500,2024-07-11,00:00:00,780011200674635,,,Desc Multi Upload VA BCA,IDR,16001.0,0.0,IDR,0.0,0.0,VA_BCA_H2H,VA
+1900470675,1900470675-0,4445555500,2024-07-11,00:00:00,780011200674636,,,Desc Multi Upload VA BCA,IDR,16001.0,0.0,IDR,0.0,0.0,VA_BCA_H2H,VA
+1900440676,1900470675-0,4445555500,2024-07-11,00:00:00,780011200674637,,,Desc Multi Upload VA BCA,IDR,16001.0,0.0,IDR,0.0,0.0,VA_BCA_H2H,VA

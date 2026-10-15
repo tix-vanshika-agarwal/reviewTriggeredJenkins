@@ -1,0 +1,8 @@
+{
+  "accommodationType": "?",
+  "locationId": "?",
+  "locationType": "?",
+  "ABTest": {
+    "enablePreferredPartner": "true"
+  }
+}

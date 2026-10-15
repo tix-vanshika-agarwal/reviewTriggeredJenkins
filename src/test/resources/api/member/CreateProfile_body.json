@@ -1,0 +1,20 @@
+{
+  "accountBirthdate": "?",
+  "accountEmail": "?",
+  "accountFirstName": "?",
+  "accountLastName": "?",
+  "accountNationalityCode": "ID",
+  "accountPhone": "?",
+  "accountPhoneCode": "+62",
+  "accountSalutationName": "?",
+  "emergencyContactName": "",
+  "emergencyContactNumber": "",
+  "emergencyCountryPhoneCode": "",
+  "identityNumber": "?",
+  "identityType": "KTP",
+  "isPrimary": false,
+  "passportExpiryDate": "",
+  "passportIssuedDate": "",
+  "passportIssuingCountry": "",
+  "passportNumber": ""
+}

@@ -1,0 +1,22 @@
+{
+  "passenger": {
+    "phoneCode": "+62",
+    "title": "MR",
+    "email": "?",
+    "firstName": "?",
+    "phoneNumber": "?",
+    "lastName": "?"
+  },
+  "totalUnit": 1,
+  "lang": "id",
+  "cartId": "?",
+  "contactPerson": {
+    "phoneCode": "+62",
+    "title": "MR",
+    "email": "?",
+    "firstName": "?",
+    "phoneNumber": "?",
+    "lastName": "?"
+  },
+  "currency": "IDR"
+}

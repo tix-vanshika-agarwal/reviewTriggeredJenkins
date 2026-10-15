@@ -1,0 +1,42 @@
+{
+  "cartId": "?",
+  "adults": [
+    {
+      "firstName": "?",
+      "lastName": "?",
+      "title": "Mrs",
+      "dob": "1970-01-01",
+      "profileId": "",
+      "nationality": "ID",
+      "passportNo": "?",
+      "issuingDate": "?",
+      "passportExpiry": "?",
+      "issuingCountry": "ID"
+    },
+    {
+      "firstName": "?",
+      "lastName": "?",
+      "title": "Mrs",
+      "dob": "1970-01-01",
+      "profileId": "",
+      "nationality": "ID",
+      "passportNo": "?",
+      "issuingDate": "?",
+      "passportExpiry": "?",
+      "issuingCountry": "ID"
+    }
+  ],
+  "childs": [],
+  "infants": [],
+  "contact": {
+    "areaCode": "+62",
+    "phone": "?",
+    "profileId": "",
+    "fullName": "?",
+    "title": "Mr",
+    "email": "?"
+  },
+  "claimVouchers": [],
+  "scale": 0,
+  "multiInsurances": []
+}

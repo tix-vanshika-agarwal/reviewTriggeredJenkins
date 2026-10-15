@@ -1,0 +1,34 @@
+{
+  "partnerServiceId": "   78001",
+  "customerNo": "?",
+  "virtualAccountNo": "?",
+  "virtualAccountName": "?",
+  "virtualAccountEmail": "",
+  "virtualAccountPhone": "",
+  "trxId": "",
+  "paymentRequestId": "?",
+  "channelCode": 6011,
+  "hashedSourceAccountNo": "",
+  "sourceBankCode": "014",
+  "paidAmount": {
+    "value": "?",
+    "currency": "IDR"
+  },
+  "cumulativePaymentAmount": null,
+  "paidBills": "",
+  "totalAmount": {
+    "value": "?",
+    "currency": "IDR"
+  },
+  "trxDateTime": "?",
+  "referenceNo": "4445555500",
+  "journalNum": "",
+  "paymentType": "",
+  "flagAdvise": "N",
+  "subCompany": "?",
+  "billDetails": [null],
+  "freeTexts": [],
+  "additionalInfo": {
+    "value": ""
+  }
+}

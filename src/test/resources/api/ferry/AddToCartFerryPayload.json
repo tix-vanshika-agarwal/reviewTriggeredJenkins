@@ -1,0 +1,6 @@
+{
+  "schedules": [
+    { "tripType": "?", "scheduleId": "?" }
+  ],
+  "passengerCount": { "adult": 0, "child": 0, "infant": 0, "elderly": 0 }
+}

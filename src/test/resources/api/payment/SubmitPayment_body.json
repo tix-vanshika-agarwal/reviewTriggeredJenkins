@@ -1,0 +1,12 @@
+[
+  {
+    "operationName": "paymentSubmitMutation",
+    "variables": {
+      "orderHash": "?",
+      "referenceId": "?",
+      "paymentKey": "ATM_TRANSFER",
+      "paymentData": "{}"
+    },
+    "query": "mutation paymentSubmitMutation($referenceId: Int!, $orderHash: String!, $paymentKey: String!, $paymentData: String!) {\n  paymentSubmit(referenceId: $referenceId, orderHash: $orderHash, paymentKey: $paymentKey, paymentData: $paymentData)\n}\n"
+  }
+]

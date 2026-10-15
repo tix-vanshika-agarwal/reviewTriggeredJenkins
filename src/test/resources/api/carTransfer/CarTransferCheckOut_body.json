@@ -1,0 +1,39 @@
+{
+  "cartId": "?",
+  "contactPerson": {
+    "title": "MR",
+    "profileId": 0,
+    "accountId": 0,
+    "email": "?",
+    "firstName": "?",
+    "lastName": "?",
+    "phoneCode": "?",
+    "phoneNumber": "?"
+  },
+  "details": [
+    {
+      "name": "?",
+      "value": "?"
+    }
+  ],
+  "passengers": [
+    {
+      "title": "MR",
+      "profileId": 0,
+      "firstName": "?",
+      "lastName": "?",
+      "phoneCode": "?",
+      "phoneNumber": "?"
+    }
+  ],
+  "pickupNotes": "",
+  "totalUnit": 1,
+  "facilities": [],
+  "specialRequest": "",
+  "flightInfo": {
+    "flightNumber": "?",
+    "airline": "",
+    "origin": "",
+    "destination": ""
+  }
+}

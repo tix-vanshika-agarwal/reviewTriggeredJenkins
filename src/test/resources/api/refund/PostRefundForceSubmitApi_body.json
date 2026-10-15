@@ -1,0 +1,15 @@
+{
+    "status": "?",
+    "size": "50",
+    "page": "1",
+    "orderId": "?",
+    "checkAllRefund": false,
+    "refundRequestIds": [
+    ],
+    "refundList": [
+        {
+            "refundRequestId": "?",
+            "paymentMethodId": "?"
+        }
+    ]
+}

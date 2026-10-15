@@ -1,0 +1,16 @@
+{
+  "partnerServiceId": "   78001",
+  "customerNo": "?",
+  "virtualAccountNo": "?",
+  "trxDateInit": "?",
+  "channelCode": 6011,
+  "language": "id",
+  "amount": null,
+  "hashedSourceAccountNo": "",
+  "sourceBankCode": "014",
+  "additionalInfo": {
+    "value": ""
+  },
+  "passApp": "",
+  "inquiryRequestId": "?"
+}

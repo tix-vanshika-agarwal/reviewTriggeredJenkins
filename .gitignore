@@ -1,0 +1,10 @@
+target/
+log/
+logs/
+extent-reports/
+screenshots/
+.idea/
+.DS_Store
+*.class
+
+src/main/resources/oauth2.json

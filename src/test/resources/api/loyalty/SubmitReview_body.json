@@ -1,0 +1,20 @@
+{
+  "ipAddress": "",
+  "deviceType": "",
+  "userLocation": { "latitude": "", "longitude": "" },
+  "uploadedImages": [{ "key": "", "value": [] }],
+  "code": "REVIEW_AIRPORT_TRANSFER",
+  "token": "?",
+  "questionForm": [
+    { "name": "safety", "value": "option_5" },
+    { "name": "communication", "value": "option_5" },
+    { "name": "cleanliness", "value": "option_5" },
+    {
+      "name": "comment",
+      "value": "elellelelel lal laldla daskd laskdladl aldkla skdlaskl dkaslkd lakdl kasldk alsd "
+    },
+    { "name": "most_like_options", "value": "" }
+  ],
+  "initial": false,
+  "imageUrls": []
+}

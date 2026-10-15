@@ -1,0 +1,14 @@
+{
+  "employeeIDs": [],
+  "departmentIDs": [
+
+  ],
+  "groupIDs": [
+
+  ],
+  "excludedEmployeeIDs": [
+
+  ],
+  "source": "POLICY",
+  "allEmployees": false
+}

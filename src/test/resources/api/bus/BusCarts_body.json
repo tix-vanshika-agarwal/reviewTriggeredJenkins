@@ -1,0 +1,11 @@
+{
+  "schedules": {
+    "depart": {
+      "id": "?",
+      "hash": "?"
+    }
+  },
+  "passengerCount": {
+    "adult": 0
+  }
+}

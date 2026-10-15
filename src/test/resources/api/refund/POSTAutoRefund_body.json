@@ -1,0 +1,15 @@
+{
+    "orderDetailId": "?",
+    "orderId": "?",
+      "items": [],
+      "refundAmounts": [
+          {
+              "key": "amount_from_vendor",
+              "label": "amount from vendor",
+              "amount": 20000
+          }
+      ],
+      "refundReason": "?",
+      "refundSubmissionExpiry": "?",
+      "remark": "automation refund deeplink testing"
+  }

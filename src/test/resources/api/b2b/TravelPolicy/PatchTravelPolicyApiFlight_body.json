@@ -1,0 +1,22 @@
+{
+  "productType": "flight",
+  "details": {
+    "flight": {
+      "policyType": "SAME",
+      "details": [
+        {
+          "categoryName": "flight_policy_category_all",
+          "routeName": "ALL",
+          "airlines": [],
+          "currency": "IDR",
+          "maxPrice": 0,
+          "minPrice": 0,
+          "seatClass": []
+        }
+      ],
+      "advanceBookingDay": 10,
+      "addOns": false,
+      "insurance": false
+    }
+  }
+}

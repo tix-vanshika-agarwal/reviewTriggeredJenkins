@@ -1,0 +1,16 @@
+{
+  "productType": "flight",
+  "verticalCartID": "?",
+  "bookingCriteria": {
+    "flight": {
+      "cartId": "?",
+      "departureAirportCode": "?",
+      "departureCityCode": "?",
+      "arrivalAirportCode": "?",
+      "arrivalCityCode": "?",
+      "isRoundTrip": "?",
+      "departureDate": "?",
+      "returnDate": ""
+    }
+  }
+}

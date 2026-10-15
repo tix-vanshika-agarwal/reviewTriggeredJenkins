@@ -1,0 +1,30 @@
+{
+  "contact": {
+    "title": "Mr",
+    "fullName": "?",
+    "areaCode": "+62",
+    "phone": "?",
+    "emailAddress": "?",
+    "profileId": "?"
+  },
+  "passengers": [
+    {
+      "paxType": "ADULT",
+      "title": "Mr",
+      "fullName": "?",
+      "dateOfBirth": "1999-09-19",
+      "profileId": ""
+    }
+  ],
+  "totalPrice": 0,
+  "schedules": {
+    "depart": {
+      "selectedSeats": [
+        {
+          "name": "?",
+          "passengerId": "1"
+        }
+      ]
+    }
+  }
+}

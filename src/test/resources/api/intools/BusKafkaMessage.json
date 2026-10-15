@@ -1,0 +1,11 @@
+{
+  "orderID": 1900710376,
+  "orderType": "bus",
+  "timestamp": 1750308955,
+  "items": [
+    {
+      "itemID": 1900840365,
+      "additionalInfo": "{\"orderDetailId\":\"1900840365\",\"statusOrder\":\"SUCCESS\",\"bookingCode\":\"TS250619101936488592FWVQ/72948/Singaraja   Bnd Aceh 1\",\"vendorOrderId\":\"7AZPAM4U\",\"vendorId\":\"redbus\",\"operatorId\":\"63f865417dbe836c6a462154\",\"operatorName\":\"Rb tes (do not book)\",\"departureTime\":\"2025-07-05 18:30\",\"tiketPrice\":{\"currency\":\"IDR\",\"value\":\"116000\"},\"vendorPrice\":{\"currency\":\"IDR\",\"value\":\"116000\"},\"dynamicPricingRevenue\":1000,\"dynamicPricingCost\":500}"
+    }
+  ]
+}

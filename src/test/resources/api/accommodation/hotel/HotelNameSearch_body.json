@@ -1,0 +1,12 @@
+{
+  "adult": "?",
+  "childAges": [],
+  "night": "?",
+  "page": 1,
+  "room": "?",
+  "searchType": "?",
+  "searchValue": "?",
+  "sort": "popularity",
+  "startDate": "?",
+  "taxDisplay": "abt"
+}

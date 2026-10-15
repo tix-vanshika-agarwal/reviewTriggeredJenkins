@@ -1,0 +1,18 @@
+{
+  "orderHash": "?",
+  "referenceId": 0,
+  "paymentKey": "CREDITCARD",
+  "subPaymentMethod": "?",
+  "paymentData": {
+    "creditCardRequest": {
+      "cardNumber": "?",
+      "cardHolderName": "?",
+      "cardExpiredMonth": "?",
+      "cardExpiredYear": "?",
+      "cardCvvNumber": "?",
+      "installmentMonth": 1,
+      "saveCc": "false",
+      "sessionId": "?"
+    }
+  }
+}

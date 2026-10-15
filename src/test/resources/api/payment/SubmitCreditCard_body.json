@@ -1,0 +1,23 @@
+{
+  "orderHash": "?",
+  "referenceId": 0,
+  "paymentKey": "CREDITCARD",
+  "paymentData": {
+    "creditCardRequest": {
+      "cardNumber": "?",
+      "cardHolderName": "?",
+      "cardExpiredMonth": "?",
+      "cardExpiredYear": "?",
+      "cardCvvNumber": "?",
+      "installmentMonth": 1,
+      "saveCc": "false",
+      "sessionId": "?",
+      "kkiOneTimeToken": "",
+      "billingAddress": "",
+      "postalCode": ""
+    },
+    "useDownPayment": false,
+    "fullSettlement": false,
+    "fdsToken": ""
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "adults": [
+    {
+      "departureBaggages": [],
+      "returnMeals": [],
+      "returnSeats": [],
+      "fullName": "?",
+      "returnBundlingAddons": [],
+      "title": "Mr",
+      "departureBundlingAddons": [],
+      "departureSeats": [],
+      "frequentFlyer": "",
+      "nationality": "ID",
+      "identityNumber": "?",
+      "profileId": "",
+      "dob": "2001-09-24",
+      "departureMeals": [],
+      "returnBaggages": []
+    }
+  ],
+  "cartId": "?",
+  "childs": [],
+  "claimVouchers": [],
+  "contact": {
+    "areaCode": "+62",
+    "phone": "?",
+    "profileId": "",
+    "fullName": "?",
+    "title": "Mr",
+    "email": "?"
+  },
+  "infants": [],
+  "multiInsurances": [],
+  "scale": 0,
+  "corporateDataRequest": {
+    "corporateInterimId": "?",
+    "corporatePaymentPreference": ""
+  }
+}

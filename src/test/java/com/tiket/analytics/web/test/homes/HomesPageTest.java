@@ -1,0 +1,248 @@
+package com.tiket.analytics.web.test.homes;
+
+import com.tiket.analytics.BaseAnalyticsTest;
+import com.tiket.analytics.assertions.BaseAssertions;
+import com.tiket.analytics.web.page.AnalyticsUrlPageWeb;
+import com.tiket.annotation.Author;
+import com.tiket.annotation.Module;
+import com.tiket.annotation.Tribe;
+import com.tiket.annotation.Vertical;
+import com.tiket.model.Session;
+import com.tiket.testbase.Assertion;
+import com.tiket.testbase.BaseTest;
+import com.tiket.testbase.Configs;
+import com.tiket.web.page.common.home.HomePageWeb;
+import com.tiket.web.page.common.home.LoginPageWeb;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
+
+import javax.security.auth.login.FailedLoginException;
+import java.util.Map;
+
+import static com.tiket.testdata.TestData.getParam;
+import static org.hamcrest.core.Is.is;
+
+public class HomesPageTest extends BaseAnalyticsTest {
+
+    @Author(names = {"Okta"})
+    @Module(name = "HomesPDP")
+    @Tribe(name = "Homes")
+    @Vertical(name = "Core")
+    @Test
+    public void testHomesPDPEnNonUtmGuest() {
+        Map<String, String> testProperties = getParam("testHomesPDPEnNonUtmGuest");
+        BaseTest.paramsThreadLocal.set(testProperties);
+        Session<WebDriver> session = sessionThreadLocal.get();
+
+        String homes = testProperties.get("homes");
+
+        String utmCampaign, utmContent, utmExternal, utmId, utmMedium, utmSource, utmTerm;
+        utmCampaign = utmContent = utmId = utmMedium = utmSource = utmTerm = "none";
+        utmExternal = "organic";
+        String language = "EN";
+
+        String path = "homes/" + homes;
+
+        HomePageWeb<?> homePage = HomePageWeb.getInstance(session);
+        AnalyticsUrlPageWeb<?> analyticsUrlPage = AnalyticsUrlPageWeb.getInstance(session);
+        LoginPageWeb<?> loginPage = LoginPageWeb.getInstance(session);
+
+        step("User open home page");
+        homePage.goToHomePage();
+
+        step("User open as guest");
+        loginPage.loginAsGuest();
+
+        step("Select english language if not in english");
+        homePage.selectEnglishLanguageOnly();
+
+        step("Open homes PDP EN");
+        analyticsUrlPage.openUrl(path);
+        homePage.waitForWebPageToLoad();
+
+        sleep(ANALYTICS_WAIT_SECONDS);
+
+        BaseAssertions analyticsAssertions = new BaseAssertions(mainLogger.get());
+
+        Assertion.assertThat("utmAttributedAt is not null", analyticsAssertions.verifyUserProperty(Configs.MESSAGES, "utmAttributedAt"), is(true));
+        Assertion.assertThat("utmSource is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmSource", utmSource), is(true));
+        Assertion.assertThat("utmMedium is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmMedium", utmMedium), is(true));
+        Assertion.assertThat("utmCampaign is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmCampaign", utmCampaign), is(true));
+        Assertion.assertThat("utmId is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmId", utmId), is(true));
+        Assertion.assertThat("utmTerm is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmTerm", utmTerm), is(true));
+        Assertion.assertThat("utmContent is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmContent", utmContent), is(true));
+        Assertion.assertThat("utmExternal is organic", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmExternal", utmExternal), is(true));
+        Assertion.assertThat("userId is null", analyticsAssertions.verifyUserProperty(Configs.MESSAGES, "userId"), is(false));
+        Assertion.assertThat("language is en", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "language", language), is(true));
+    }
+
+    @Author(names = {"Okta"})
+    @Module(name = "HomesPDP")
+    @Tribe(name = "Homes")
+    @Vertical(name = "Core")
+    @Test
+    public void testHomesPDPEnNonUtmLogin() throws FailedLoginException, InterruptedException {
+        Map<String, String> testProperties = getParam("testHomesPDPEnNonUtmLogin");
+        BaseTest.paramsThreadLocal.set(testProperties);
+        Session<WebDriver> session = sessionThreadLocal.get();
+
+        String username = testProperties.get("username");
+        String password = testProperties.get("password");
+        String homes = testProperties.get("homes");
+
+        String utmCampaign, utmContent, utmExternal, utmId, utmMedium, utmSource, utmTerm;
+        utmCampaign = utmContent = utmId = utmMedium = utmSource = utmTerm = "none";
+        utmExternal = "organic";
+        String language = "EN";
+
+        String path = "homes/" + homes;
+
+        HomePageWeb<?> homePage = HomePageWeb.getInstance(session);
+        AnalyticsUrlPageWeb<?> analyticsUrlPage = AnalyticsUrlPageWeb.getInstance(session);
+        LoginPageWeb<?> loginPage = LoginPageWeb.getInstance(session);
+
+        step("User open home page");
+        homePage.goToHomePage();
+
+        step("Login as " + username + " via session injection");
+        loginPage.loginWithSpecificAccountViaCookie(username, password);
+
+        step("Select english language if not in english");
+        homePage.selectEnglishLanguageOnly();
+
+        step("Open homes PDP EN");
+        analyticsUrlPage.openUrl(path);
+        homePage.waitForWebPageToLoad();
+
+        sleep(ANALYTICS_WAIT_SECONDS);
+
+        BaseAssertions analyticsAssertions = new BaseAssertions(mainLogger.get());
+
+        Assertion.assertThat("utmAttributedAt is not null", analyticsAssertions.verifyUserProperty(Configs.MESSAGES, "utmAttributedAt"), is(true));
+        Assertion.assertThat("utmSource is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmSource", utmSource), is(true));
+        Assertion.assertThat("utmMedium is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmMedium", utmMedium), is(true));
+        Assertion.assertThat("utmCampaign is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmCampaign", utmCampaign), is(true));
+        Assertion.assertThat("utmId is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmId", utmId), is(true));
+        Assertion.assertThat("utmTerm is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmTerm", utmTerm), is(true));
+        Assertion.assertThat("utmContent is none", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmContent", utmContent), is(true));
+        Assertion.assertThat("utmExternal is organic", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmExternal", utmExternal), is(true));
+        Assertion.assertThat("userId is not null", analyticsAssertions.verifyUserProperty(Configs.MESSAGES, "userId"), is(true));
+        Assertion.assertThat("language is en", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "language", language), is(true));
+    }
+
+    @Author(names = {"Okta"})
+    @Module(name = "HomesPDP")
+    @Tribe(name = "Homes")
+    @Vertical(name = "Core")
+    @Test
+    public void testHomesPDPEnUtmGuest() {
+        Map<String, String> testProperties = getParam("testHomesPDPEnUtmGuest");
+        BaseTest.paramsThreadLocal.set(testProperties);
+        Session<WebDriver> session = sessionThreadLocal.get();
+
+        String homes = testProperties.get("homes");
+
+        String utmCampaign = testProperties.get("utmCampaign");
+        String utmContent = testProperties.get("utmContent");
+        String utmExternal = "nonOrganic";
+        String utmId = testProperties.get("utmId");
+        String utmMedium = testProperties.get("utmMedium");
+        String utmSource = testProperties.get("utmSource");
+        String utmTerm = testProperties.get("utmTerm");
+        String language = "EN";
+
+        String path = "homes/" + homes + "?";
+
+        HomePageWeb<?> homePage = HomePageWeb.getInstance(session);
+        AnalyticsUrlPageWeb<?> analyticsUrlPage = AnalyticsUrlPageWeb.getInstance(session);
+        LoginPageWeb<?> loginPage = LoginPageWeb.getInstance(session);
+
+        step("User open home page");
+        homePage.goToHomePage();
+
+        step("User open as guest");
+        loginPage.loginAsGuest();
+
+        step("Select english language if not in english");
+        homePage.selectEnglishLanguageOnly();
+
+        step("Open homes PDP EN");
+        String utmProperties = analyticsUrlPage.getUtmProperties(utmCampaign, utmContent, utmId, utmMedium, utmSource, utmTerm);
+        analyticsUrlPage.openUrl(path + utmProperties);
+        homePage.waitForWebPageToLoad();
+
+        sleep(ANALYTICS_WAIT_SECONDS);
+
+        BaseAssertions analyticsAssertions = new BaseAssertions(mainLogger.get());
+
+        Assertion.assertThat("utmAttributedAt is not null", analyticsAssertions.verifyUserProperty(Configs.MESSAGES, "utmAttributedAt"), is(true));
+        Assertion.assertThat("utmCampaign is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmCampaign", utmCampaign), is(true));
+        Assertion.assertThat("utmContent is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmContent", utmContent), is(true));
+        Assertion.assertThat("utmExternal is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmExternal", utmExternal), is(true));
+        Assertion.assertThat("utmId is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmId", utmId), is(true));
+        Assertion.assertThat("utmMedium is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmMedium", utmMedium), is(true));
+        Assertion.assertThat("utmSource is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmSource", utmSource), is(true));
+        Assertion.assertThat("utmTerm is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmTerm", utmTerm), is(true));
+        Assertion.assertThat("userId is null", analyticsAssertions.verifyUserProperty(Configs.MESSAGES, "userId"), is(false));
+        Assertion.assertThat("language is en", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "language", language), is(true));
+    }
+
+    @Author(names = {"Okta"})
+    @Module(name = "HomesPDP")
+    @Tribe(name = "Homes")
+    @Vertical(name = "Core")
+    @Test
+    public void testHomesPDPEnUtmLogin() throws FailedLoginException, InterruptedException {
+        Map<String, String> testProperties = getParam("testHomesPDPEnUtmLogin");
+        BaseTest.paramsThreadLocal.set(testProperties);
+        Session<WebDriver> session = sessionThreadLocal.get();
+
+        String username = testProperties.get("username");
+        String password = testProperties.get("password");
+        String homes = testProperties.get("homes");
+
+        String utmCampaign = testProperties.get("utmCampaign");
+        String utmContent = testProperties.get("utmContent");
+        String utmExternal = "nonOrganic";
+        String utmId = testProperties.get("utmId");
+        String utmMedium = testProperties.get("utmMedium");
+        String utmSource = testProperties.get("utmSource");
+        String utmTerm = testProperties.get("utmTerm");
+        String language = "EN";
+
+        String path = "homes/" + homes + "?";
+
+        HomePageWeb<?> homePage = HomePageWeb.getInstance(session);
+        AnalyticsUrlPageWeb<?> analyticsUrlPage = AnalyticsUrlPageWeb.getInstance(session);
+        LoginPageWeb<?> loginPage = LoginPageWeb.getInstance(session);
+
+        step("User open home page");
+        homePage.goToHomePage();
+
+        step("Login as " + username + " via session injection");
+        loginPage.loginWithSpecificAccountViaCookie(username, password);
+
+        step("Select english language if not in english");
+        homePage.selectEnglishLanguageOnly();
+
+        step("Open homes PDP EN");
+        String utmProperties = analyticsUrlPage.getUtmProperties(utmCampaign, utmContent, utmId, utmMedium, utmSource, utmTerm);
+        analyticsUrlPage.openUrl(path + utmProperties);
+        homePage.waitForWebPageToLoad();
+
+        sleep(ANALYTICS_WAIT_SECONDS);
+
+        BaseAssertions analyticsAssertions = new BaseAssertions(mainLogger.get());
+
+        Assertion.assertThat("utmAttributedAt is not null", analyticsAssertions.verifyUserProperty(Configs.MESSAGES, "utmAttributedAt"), is(true));
+        Assertion.assertThat("utmCampaign is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmCampaign", utmCampaign), is(true));
+        Assertion.assertThat("utmContent is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmContent", utmContent), is(true));
+        Assertion.assertThat("utmExternal is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmExternal", utmExternal), is(true));
+        Assertion.assertThat("utmId is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmId", utmId), is(true));
+        Assertion.assertThat("utmMedium is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmMedium", utmMedium), is(true));
+        Assertion.assertThat("utmSource is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmSource", utmSource), is(true));
+        Assertion.assertThat("utmTerm is correct", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "utmTerm", utmTerm), is(true));
+        Assertion.assertThat("userId is not null", analyticsAssertions.verifyUserProperty(Configs.MESSAGES, "userId"), is(true));
+        Assertion.assertThat("language is en", analyticsAssertions.haveCorrectUserProperty(Configs.MESSAGES, "language", language), is(true));
+    }
+}

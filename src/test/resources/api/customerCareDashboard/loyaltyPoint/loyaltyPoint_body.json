@@ -1,0 +1,22 @@
+[
+    {
+        "operationName": "PendingPointULPLoyalty",
+        "variables": {
+            "accountId": "?",
+            "page": 0,
+            "size": 10,
+            "sortDirection": "ASC"
+        },
+        "query": "query PendingPointULPLoyalty($accountId: String, $page: Int, $size: Int, $sortDirection: String) {\n  pointPendingULPLoyalty(\n    accountId: $accountId\n    page: $page\n    size: $size\n    sortDirection: $sortDirection\n  ) {\n    code\n    errors\n    message\n    serverTime\n    data {\n      content {\n        orderDate\n        orderId\n        orderName\n        point\n        pointStatus\n        notes\n        __typename\n      }\n      empty\n      first\n      last\n      number\n      numberOfElements\n      size\n      totalElements\n      totalPages\n      __typename\n    }\n    __typename\n  }\n}\n"
+    },
+    {
+        "operationName": "HistoryPointULPLoyalty",
+        "variables": {
+            "accountId": "?",
+            "page": 0,
+            "size": 10,
+            "sortDirection": "ASC"
+        },
+        "query": "query HistoryPointULPLoyalty($accountId: String, $page: Int, $size: Int, $sortDirection: String) {\n  pointHistoryULPLoyalty(\n    accountId: $accountId\n    page: $page\n    size: $size\n    sortDirection: $sortDirection\n  ) {\n    code\n    errors\n    message\n    serverTime\n    data {\n      content {\n        orderDate\n        orderId\n        orderName\n        point\n        type\n        notes\n        __typename\n      }\n      empty\n      first\n      last\n      number\n      numberOfElements\n      size\n      totalElements\n      totalPages\n      __typename\n    }\n    __typename\n  }\n}\n"
+    }
+]

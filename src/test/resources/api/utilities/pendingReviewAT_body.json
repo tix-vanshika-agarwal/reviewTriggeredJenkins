@@ -1,0 +1,30 @@
+{
+  "accountId": "?",
+  "userFullName": "?",
+  "lang": "?",
+  "productType": "AIRPORT_TRANSFER",
+  "orderId": "?",
+  "orderDetailId": "?",
+  "inventoryId" : "6040cdf5c5859c5ecab31d2c",
+  "inventoryName" : "?",
+  "instantNotification": false,
+  "totalItems": 2,
+  "imageUrl": "https://s-gk.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/original/car-model/2020/12/22/6f403742-9265-4f3d-8edb-8b97d32869fa-1608622840735-ed510ebb885847f4d2c9aedfc1c0beed.jpg",
+  "journeyStartDate": "T11:25:17.239Z",
+  "journeyEndDate": "T11:25:17.239Z",
+  "area" : "Rasuna Office Park, Jl. Taman Rasuna Tim., RW.1, Menteng Atas, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12960, Indonesia",
+  "city" : "Kota Jakarta Selatan",
+  "region" : "Kecamatan Setiabudi",
+  "country" : "INDONESIA",
+  "additionalInfo": {
+    "fleetId": "0697aaef-042a-41d4-9db8-a0da67c17527",
+    "pickupTime": "Friday, 05 Mar 2021 at 00.00",
+    "pickupPlace": "?",
+    "pickupAddress": "CGK - Soekarno Hatta",
+    "dropoffAddress": "Rasuna Office Park - Rasuna Office Park, Jl. Taman Rasuna Tim., RW.1, Menteng Atas, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12960, Indonesia"
+  },
+  "showDate": "?",
+  "expiryDate": "?",
+  "isSubmitted": false,
+  "username": "?"
+}

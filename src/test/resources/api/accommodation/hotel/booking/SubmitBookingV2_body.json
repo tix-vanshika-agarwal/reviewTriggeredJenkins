@@ -1,0 +1,52 @@
+{
+  "contactPerson": {
+    "areaCode": "+62",
+    "email": "?",
+    "fullName": "?",
+    "phone": "85750428576",
+    "profileId": "",
+    "title": "?"
+  },
+  "hotel": [
+    {
+      "books" : [
+        {
+          "bedTypePreference": "",
+          "bookingAddOnRequests": [
+            {
+              "addons": [
+                {
+                  "amount": 0,
+                  "id": "?",
+                  "note": ""
+                }
+              ],
+              "date": "?"
+            }
+          ],
+          "cartId": "?",
+          "checkIn": "",
+          "checkOut": "",
+          "childAges": [],
+          "connectingRoom": "",
+          "highFloorRoom": "",
+          "rooms": [
+            {
+              "guestDetail": {
+                "fullName": "?",
+                "profileId": "",
+                "title": "?"
+              },
+              "nights": []
+            }
+          ],
+          "smokingPreference": "",
+          "specialRequest": ""
+        }
+      ],
+      "hotelId" : "?"
+    }
+  ],
+  "insurances": [],
+  "insurancesCredentials": []
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "operationName": "loginUser",
+    "variables": {
+      "username": "?",
+      "password": "?",
+      "memberType": "ADMIN",
+      "adminType": "INTERNAL"
+    },
+    "query": "mutation loginUser($memberType: String, $adminType: String, $password: String, $username: String) {\n  loginUser(memberType: $memberType, adminType: $adminType, password: $password, username: $username) {\n    data {\n      username\n    }\n    message\n  }\n}\n"
+  }
+]

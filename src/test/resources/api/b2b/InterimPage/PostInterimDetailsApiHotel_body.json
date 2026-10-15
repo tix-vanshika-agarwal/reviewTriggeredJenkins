@@ -1,0 +1,17 @@
+{
+  "productType": "hotel",
+  "verticalCartID": "?",
+  "bookingCriteria": {
+    "hotel": {
+      "cartId": "?",
+      "publicId": "?",
+      "startDate": "?",
+      "endDate": "?",
+      "nights": "?",
+      "countryId": "?",
+      "cityId": "?",
+      "regionId": "?",
+      "areaId": "?"
+    }
+  }
+}
