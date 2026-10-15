@@ -1,0 +1,35 @@
+{
+  "command": "/run-jenkins",
+  "checkName": "Jenkins Automation",
+
+  "jenkinsUrl": "https://jenkins-fe-qa-preprod.ggwp.red",
+  "jenkinsJobPath": "FLG-Web-Regression",
+
+  "parameters": {
+    "platform":       { "jenkinsName": "platform", "values": { "WEB": "dweb", "DWEB": "dweb", "MWEB": "mweb" } },
+    "environment":    { "jenkinsName": "env",      "values": { "PREPROD": "preprod" } },
+    "test_case_name": { "jenkinsName": "testname" },
+    "gsheet_id":      { "jenkinsName": "gSheetId" },
+    "branch_name":    { "jenkinsName": "branch" }
+  },
+
+  "fixedParameters": {
+    "threads": "1",
+    "sessions": "1",
+    "testdata": "google",
+    "tribe": "all",
+    "module": "all",
+    "testtype": "all",
+    "sendEmail": "false",
+    "dbUse": "false",
+    "runFromScheduler": ""
+  },
+
+  "permissions": { "minimum": "write", "allowPrAuthor": true },
+
+  "result": { "requireTestReport": true, "allSkipped": "fail" },
+
+  "timeouts": { "queueMinutes": 30, "buildMinutes": 150, "pollSeconds": 20 },
+
+  "maxTestsListed": 50
+}

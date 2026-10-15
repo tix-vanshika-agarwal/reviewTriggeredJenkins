@@ -1,0 +1,105 @@
+# Reviewer-Triggered Jenkins Execution + PR merge gate
+#
+# A reviewer comments on the PR:
+#
+#   /run-jenkins
+#   ```json
+#   { "jenkins_test": { "platform": "WEB", "environment": "PREPROD",
+#       "test_case_name": "Flight_testBookingOneWay", "gsheet_id": "<id>",
+#       "branch_name": "main" } }
+#   ```
+#
+# The bot triggers FLG-Web-Regression on Jenkins with those values and sets the
+# "Jenkins Automation" check on the PR head commit to success/failure. Comment
+# `/run-jenkins` again (with a fresh JSON block) any time you want to re-run —
+# unlike a label, a comment has no on/off state, so there's nothing to reset first.
+#
+# `issue_comment` workflows always run using the workflow file from the default
+# branch, never from the PR branch, so this is safe to trigger on any PR comment
+# without the pull_request_target dance.
+
+name: Reviewer Triggered Jenkins
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  checks: write
+  id-token: write   # only used when the IAP token is minted via Workload Identity Federation
+
+concurrency:
+  group: reviewer-triggered-jenkins-pr-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  run-jenkins:
+    if: >-
+      github.event.issue.pull_request != null &&
+      github.event.sender.type != 'Bot' &&
+      contains(github.event.comment.body, '/run-jenkins')
+    # Jenkins is on a public hostname behind Google IAP, so GitHub-hosted runners work.
+    # If it is only reachable from tiket's network, set the repo variable RUNNER_LABEL
+    # to the label of a self-hosted runner inside the network.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 200   # > timeouts.queueMinutes + timeouts.buildMinutes in config.json
+
+    steps:
+      # Bot code from the default branch only.
+      - name: Checkout bot code
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/reviewer-triggered-jenkins
+          persist-credentials: false
+
+      # Google IAP: mint an ID token for the service account allowed through IAP.
+      # Uses Workload Identity Federation (vars.GCP_WIF_PROVIDER) or, for the POC,
+      # a service-account key (secrets.GCP_SA_KEY). Skipped if vars.IAP_CLIENT_ID is unset.
+      - name: Get Google IAP ID token
+        id: iap
+        if: vars.IAP_CLIENT_ID != ''
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          token_format: id_token
+          id_token_audience: ${{ vars.IAP_CLIENT_ID }}
+          id_token_include_email: true
+
+      - name: Trigger Jenkins and gate the PR
+        id: bot
+        uses: actions/github-script@v7
+        env:
+          JENKINS_URL: ${{ vars.JENKINS_URL }}            # optional, overrides config.jenkinsUrl
+          JENKINS_USER: ${{ secrets.JENKINS_USER }}
+          JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
+          IAP_ID_TOKEN: ${{ steps.iap.outputs.id_token }}
+        with:
+          script: |
+            const main = require(`${process.env.GITHUB_WORKSPACE}/.github/reviewer-triggered-jenkins/src/main.js`);
+            await main({ github, context, core });
+
+      # Never leave the check stuck "in progress" if the job crashed, timed out or was cancelled.
+      - name: Close dangling check run
+        if: (failure() || cancelled()) && steps.bot.outputs.check_run_id != ''
+        uses: actions/github-script@v7
+        env:
+          CHECK_RUN_ID: ${{ steps.bot.outputs.check_run_id }}
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const check_run_id = Number(process.env.CHECK_RUN_ID);
+            const { data } = await github.rest.checks.get({ owner, repo, check_run_id });
+            if (data.status !== 'completed') {
+              await github.rest.checks.update({
+                owner, repo, check_run_id, status: 'completed', conclusion: 'failure',
+                output: {
+                  title: 'ERROR: workflow stopped before Jenkins finished',
+                  summary: `See ${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}. Comment /run-jenkins again to retry.`,
+                },
+              });
+            }
