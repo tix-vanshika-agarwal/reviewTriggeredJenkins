@@ -1972,6 +1972,6 @@ public class FlightTest extends BaseTest {
 
         step("The user searches the deleted commission region and verify 'Data Not Exist' is displayed.");
         flightCommissionRegionPage.searchByName(createdCommissionRegion.get("name"));
-        Assertion.assertThat("Verify 'Data Not Exist' is displayed", flightCommissionRegionPage.isDataNotExist(), is(true));
+        Assertion.assertThat("Verify 'Data' Not Exist' is displayed", flightCommissionRegionPage.isDataNotExist(), is(true));
     }
 }
